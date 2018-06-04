@@ -1,0 +1,124 @@
+@font-face {
+    font-family: BEYNO;
+    src: url("../fonts/BEYNO.otf");
+}
+body{
+    margin-bottom: 0px;
+}
+
+.brand{
+    font-family: BEYNO;
+    font-size: x-large;
+    font-weight: bolder;
+}
+.left-ul>li{
+    margin-right: 10px;
+}
+.slogen{
+    padding-top: 11px;
+}
+.right-a{
+    line-height: 69px;
+    font-family: Arial,sans-serif;
+    font-size: 14px;
+    text-align: left;
+    color: #1e1e1e;
+    cursor: pointer;
+}
+.right-a:hover{
+    color: #a19e9d;
+}
+
+.subTitle{
+    border-bottom: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
+}
+.paintertitle{
+    background: white;
+    font-size: 20px;
+    padding: 20px 0;
+    margin-right: 20px;
+    color: black;
+    font-weight: bold;
+}
+
+.paintername{
+    color: #999999;
+    font-size: 17px;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    line-height: 20px;
+    font-weight: lighter;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+.contentContainer{
+    margin-top: 30px;
+}
+
+.part1>p{
+
+    color: black;
+    font-size: 16px;
+    letter-spacing: .6px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: left;
+}
+.card{
+    margin-bottom: 10px;
+}
+.part2>p{
+    color: #898989;
+    font-size: 14px;
+    letter-spacing: .6px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: left;
+}
+.part3>p{
+    font-weight: bold;
+    font-size: 16px;
+}
+.state1{
+    color: #a19e9d;
+}
+.state2{
+    color: red;
+}
+
+.buttons{
+    margin-top: 25px;
+}
+.blackbutton{
+    margin-bottom: 15px;
+    background: black;
+    color: white;
+    min-height: 38px;
+    font-size: 10px;
+    min-width: 88px;
+    border: none;
+    outline: none;
+    width: 345px;
+    cursor: pointer;
+
+}
+.blackbutton:hover{
+    background: #ff5500;
+}
+.whitebutton{
+    margin-bottom: 15px;
+    background: white;
+    color: black;
+    min-height: 38px;
+    font-size: 10px;
+    min-width: 88px;
+    border: #e5e5e5 solid thin;
+    outline: none;
+    width: 345px;
+    cursor: pointer;
+}
+.whitebutton:hover{
+    border: black solid thin;
+}
