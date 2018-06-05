@@ -8,7 +8,7 @@
  * Time: 17:20
  */
 
-showNavLef_tourist();
+//showNavLef_tourist();
 //showNavLef_loged();
 
 function showNavLef_tourist(){
@@ -24,10 +24,10 @@ function showNavLef_tourist(){
                 <a href="specificdetailpage.php?artworkID=351" class="nav-link right-a">详情</a>
             </li>
             <li class="nav-item ">
-                <a href="#" class="nav-link right-a">登陆</a>
+                <a href="#" class="nav-link right-a" onclick="loginShow();">登陆</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link right-a">注册</a>
+                <a href="#" class="nav-link right-a" onclick="registerShow();">注册</a>
             </li></ul>
     ';
 }
@@ -36,13 +36,13 @@ function showNavLef_loged(){
     echo '
 <ul class="nav pull-right">
             <li class="nav-item">
-            <a href="#" class="nav-link right-a"><i class="fa fa-user">Ruixin</i> </a>
+            <a href="" class="nav-link right-a"><i class="fa fa-user">'.$_SESSION["userName"].'</i> </a>
             </li>
             <li class="nav-item ">
                 <a href="#" class="nav-link right-a"><i class="fa fa-shopping-cart">购物车</i> </a>
             </li>
             <li class="nav-item ">
-                <a href="#" class="nav-link right-a"><i class="fa fa-navicon">详情</i></a>
+                <a href="specificdetailpage.php?artworkID=351" class="nav-link right-a"><i class="fa fa-navicon">详情</i></a>
             </li>
             <li class="nav-item ">
                 <a href="#" class="nav-link right-a"><i class="fa fa-mail-reply">登出</i></a>

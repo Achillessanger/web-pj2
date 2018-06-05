@@ -5,7 +5,8 @@
  * Date: 2018/6/4
  * Time: 16:35
  */
-
+session_start();
+error_reporting(0);
 $_mysqli = mysqli_connect('localhost','root','');
 mysqli_select_db($_mysqli,'artstore');
 $_mysqli -> query("SET NAMES utf8");
@@ -18,6 +19,7 @@ $_mysqli -> query("SET NAMES utf8");
     <title>Art Store</title>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/popout.css">
     <link rel="stylesheet" href="../css/frontpage.css">
 </head>
 
@@ -35,10 +37,22 @@ $_mysqli -> query("SET NAMES utf8");
 
         </ul>
 
-            <?php include 'logornot.php';?>
-
+            <?php include 'logornot.php';
+            if(empty($_SESSION['userID'])){
+                showNavLef_tourist();
+            }else{
+                showNavLef_loged();
+            }
+            ?>
     </div>
 </nav>
+
+<!--注册弹窗-->
+<?php include 'register.php';?>
+
+<!--登陆弹窗-->
+<?php include 'login.php';?>
+
 
 <!--画廊，最热艺术品展示-->
 <div class="container">
@@ -60,7 +74,7 @@ $_mysqli -> query("SET NAMES utf8");
             echo  '
                 <div class="carousel-item active">
                                 <a href="specificdetailpage.php?artworkID='.$row['artworkID'].'"><img src="../resources/img/'.$row['imageFileName'].'" class="card-img-top gallery"></a>
-                <div class="carousel-caption"> 
+                <div class="carousel-caption">
                 <h3>'.$row['title'].'</h3>
                 <p>'.$row['description'].'</p>
                 </div>
@@ -71,7 +85,7 @@ $_mysqli -> query("SET NAMES utf8");
                 echo  '
                 <div class="carousel-item">
                                 <a href="specificdetailpage.php?artworkID='.$row['artworkID'].'"><img src="../resources/img/'.$row['imageFileName'].'" class="card-img-top  gallery"></a>
-                                 <div class="carousel-caption"> 
+                                 <div class="carousel-caption">
                 <h3>'.$row['title'].'</h3>
                 <p>'.$row['description'].'</p>
                 </div>
@@ -89,6 +103,7 @@ $_mysqli -> query("SET NAMES utf8");
         </a>
     </div>
 </div>
+
 
 <!--最新艺术品展示-->
 <div class="container container-fluid thenewest">
@@ -129,6 +144,7 @@ $_mysqli -> query("SET NAMES utf8");
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="../js/register.js" type="text/javascript"></script>
 </body>
 
 </html>
