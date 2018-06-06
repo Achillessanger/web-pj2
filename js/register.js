@@ -212,9 +212,9 @@ function writeSession() {
 function seeIfLoged() {
     if (window.XMLHttpRequest)
     {
-        xmlhttp2=new XMLHttpRequest();// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+        xmlhttp2=new XMLHttpRequest();
     } else {
-        xmlhttp2=new ActiveXObject("Microsoft.XMLHTTP");// IE6, IE5 浏览器执行代码
+        xmlhttp2=new ActiveXObject("Microsoft.XMLHTTP");
     }
     xmlhttp2.onreadystatechange = function (ev) {
         if (xmlhttp2.readyState==4 && xmlhttp2.status==200) {
@@ -245,6 +245,22 @@ function showPopLoginFail() {
 }
 function hidePopLoginFail() {
     document.getElementById('loginfailed').classList.add('hide');
+}
+
+function logOut() {
+    if (window.XMLHttpRequest)
+    {
+        xmlhttp3=new XMLHttpRequest();// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+    } else {
+        xmlhttp3=new ActiveXObject("Microsoft.XMLHTTP");// IE6, IE5 浏览器执行代码
+    }
+    xmlhttp3.onreadystatechange = function (ev) {
+        if (xmlhttp3.readyState==4 && xmlhttp3.status==200) {
+            document.location.reload();
+        }
+    }
+    xmlhttp3.open("POST","logout.php",true)
+    xmlhttp3.send();
 }
 
 

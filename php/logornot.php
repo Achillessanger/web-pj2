@@ -52,7 +52,7 @@ function showNavLef_loged(){
                 <a href="specificdetailpage.php?artworkID=351" class="nav-link right-a"><i class="fa fa-navicon">详情</i></a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link right-a"><i class="fa fa-mail-reply">登出</i></a>
+                <a class="nav-link right-a" onclick="logOut();"><i class="fa fa-mail-reply">登出</i></a>
             </li>
           
             <form class="form-inline navbar-form pull-right">
