@@ -12,7 +12,6 @@ failRegis = false;
 
 function registerShow(){
     loginHide();
-    createCode();
     canRegiste = false;
     document.getElementById('resetbut').click();
     document.getElementById('registerdiv').classList.remove('hide');
@@ -53,107 +52,24 @@ function loginHide() {
 
 function loginAffirm() {
 
-    document.getElementById('r1').classList.add('hide');
-    // document.getElementById('r2').classList.add('hide')
-    document.getElementById('r3').classList.add('hide');
-    document.getElementById('r4').classList.add('hide');
-    document.getElementById('r5').classList.add('hide');
+    document.getElementById('r1').classList.add('hide');//用户名密码错误，后端返回
+    document.getElementById('r3').classList.add('hide');//用户为空，前端判断
+    document.getElementById('r4').classList.add('hide');//密码为空，前端判断
+
 
     if(document.getElementById('login-username-input').value == ""){
         document.getElementById('r3').classList.remove('hide');
     }else if(document.getElementById('login-password-input').value == ""){
         document.getElementById('r4').classList.remove('hide');
-    }else if(document.getElementById('login-username-input').value == "123"&document.getElementById('login-password-input').value == "123"){
-        document.getElementById('r1').classList.remove('hide');
-    }else if(document.getElementById('login-ic-input').value != code0 || document.getElementById('login-ic-input').value == ""){
-        document.getElementById('r5').classList.remove('hide');
     }else {
 
-        // document.getElementById('nav-notyet').classList.add('hide');
-        // document.getElementById('nav-already').classList.remove('hide');
-        userName = document.getElementById('login-username-input').value;
-        userPassword = document.getElementById('login-password-input').value;
+        document.getElementById('loginform').submit();
         loginHide();
-        ifLoged = true;
-        window.location.href="frontpage-registered.html";
-        alert("登陆成功");
+        writeSession();
     }
 
 }
 
-function loginAffirmSpeP() {
-
-
-    document.getElementById('r1').classList.add('hide');
-    // document.getElementById('r2').classList.add('hide')
-    document.getElementById('r3').classList.add('hide');
-    document.getElementById('r4').classList.add('hide');
-    document.getElementById('r5').classList.add('hide');
-
-    if(document.getElementById('login-username-input').value == ""){
-        document.getElementById('r3').classList.remove('hide');
-    }else if(document.getElementById('login-password-input').value == ""){
-        document.getElementById('r4').classList.remove('hide');
-    }else if(document.getElementById('login-username-input').value == "123"&document.getElementById('login-password-input').value == "123"){
-        document.getElementById('r1').classList.remove('hide');
-    }else if(document.getElementById('login-ic-input').value != code0 || document.getElementById('login-ic-input').value == ""){
-        document.getElementById('r5').classList.remove('hide');
-    }else {
-
-        // document.getElementById('nav-notyet').classList.add('hide');
-        // document.getElementById('nav-already').classList.remove('hide');
-        userName = document.getElementById('login-username-input').value;
-        userPassword = document.getElementById('login-password-input').value;
-        loginHide();
-        ifLoged = true;
-        window.location.href="specificdetailpage-registered.html";
-        alert("登陆成功");
-    }
-
-
-}
-function loginAffirmSearchP() {
-    document.getElementById('r1').classList.add('hide');
-    // document.getElementById('r2').classList.add('hide')
-    document.getElementById('r3').classList.add('hide');
-    document.getElementById('r4').classList.add('hide');
-    document.getElementById('r5').classList.add('hide');
-
-    if(document.getElementById('login-username-input').value == ""){
-        document.getElementById('r3').classList.remove('hide');
-    }else if(document.getElementById('login-password-input').value == ""){
-        document.getElementById('r4').classList.remove('hide');
-    }else if(document.getElementById('login-username-input').value == "123"&document.getElementById('login-password-input').value == "123"){
-        document.getElementById('r1').classList.remove('hide');
-    }else if(document.getElementById('login-ic-input').value != code0 || document.getElementById('login-ic-input').value == ""){
-        document.getElementById('r5').classList.remove('hide');
-    }else {
-        // document.getElementById('nav-notyet').classList.add('hide');
-        // document.getElementById('nav-already').classList.remove('hide');
-        userName = document.getElementById('login-username-input').value;
-        userPassword = document.getElementById('login-password-input').value;
-        loginHide();
-        ifLoged = true;
-        window.location.href="searchpage-registered.html";
-        alert("登陆成功");
-    }
-
-
-}
-
-// function refreshNavbar() {
-//     if(ifLoged){
-//         document.getElementById('nav-notyet').classList.add('hide')
-//         document.getElementById('nav-already').classList.remove('hide')
-//     }else {
-//         document.getElementById('nav-notyet').classList.remove('hide')
-//         document.getElementById('nav-already').classList.add('hide')
-//     }
-// }
-function logout() {
-    ifLoged = false;
-    window.location.href="frontpage.html";
-}
 
 function c1() {
     var k1 = /[0-9]/;
@@ -258,79 +174,81 @@ function c5() {
 }
 
 
-
-
 function registerCheck() {
     c1();
     c2();
     c3();
     c4();
     c5();
-    if(canRegiste1&canRegiste2&canRegiste3&canRegiste&canRegiste5){
-        alert("hi?")
-        document.getElementById('registerform').submit();
-    }else {
-        alert("hi?")
-        document.getElementById('registerform').submit();
-    }
-}
-function registeSpeP() {
-    c1();
-    c2();
-    c3();
-    c4();
-    c5();
-    c13();
-    if(canRegiste1&canRegiste2&canRegiste3&canRegiste&canRegiste5){
+    // if(canRegiste1&canRegiste2&canRegiste3&canRegiste&canRegiste5){
+    //     alert("hi?")
+    //     document.getElementById('registerform').submit();
+    // }else {
+    //     alert("hi?")
+    //     document.getElementById('registerform').submit();
+    // }
+    document.getElementById('registerform').submit();
 
-        window.location.href="specificdetailpage-registered.html";
-        alert("注册成功");
-    }
-    if(failRegis){
-        window.location.href="specificdetailpage.html";
-        alert("注册失败 用户名已存在");
-    }
-}
-function registeSearchP() {
-    c1();
-    c2();
-    c3();
-    c4();
-    c5();
-    c13();
-    if(canRegiste1&canRegiste2&canRegiste3&canRegiste&canRegiste5){
-        window.location.href="searchpage-registered.html";
-        alert("注册成功");
-    }
-    if(failRegis){
-        window.location.href="searchpage.html";
-        alert("注册失败 用户名已存在");
-    }
+    writeSession();
 }
 
 
-
-//验证码
-var code;
-function createCode(){
-    //首先默认code为空字符串
-    code = '';
-    //设置长度，这里看需求，我这里设置了4
-    var codeLength = 4;
-    var codeV = document.getElementById('code');
-    //设置随机字符
-    var random = new Array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R', 'S','T','U','V','W','X','Y','Z');
-    //循环codeLength 我设置的4就是循环4次
-    for(var i = 0; i < codeLength; i++){
-        //设置随机数范围,这设置为0 ~ 36
-        var index = Math.floor(Math.random()*36);
-        //字符串拼接 将每次随机的字符 进行拼接
-        code += random[index];
+function writeSession() {
+    if (window.XMLHttpRequest)
+    {
+        xmlhttp=new XMLHttpRequest();// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+    } else {
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");// IE6, IE5 浏览器执行代码
     }
-    //将拼接好的字符串赋值给展示的Value
-    codeV.value = code;
-    code0 = code;
+    xmlhttp.onreadystatechange = function (ev) {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                document.location.reload();
+                seeIfLoged();
+        }
+    }
+    xmlhttp.open("POST","writesession.php",true)
+    xmlhttp.send();
 }
+function seeIfLoged() {
+    if (window.XMLHttpRequest)
+    {
+        xmlhttp2=new XMLHttpRequest();// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+    } else {
+        xmlhttp2=new ActiveXObject("Microsoft.XMLHTTP");// IE6, IE5 浏览器执行代码
+    }
+    xmlhttp2.onreadystatechange = function (ev) {
+        if (xmlhttp2.readyState==4 && xmlhttp2.status==200) {
+            if(xmlhttp2.responseText == 0){
+                showPopLoginFail();
+                setTimeout(hidePopLoginFail,4000);
+            }else if(xmlhttp2.responseText == 1){
+                showPopLoginSuccess();
+                setTimeout(hidePopLoginSuccess,2000);
+            }
+        }
+    }
+    xmlhttp2.open("POST","iflogsuccess.php",true)
+    xmlhttp2.send();
+}
+
+
+
+
+function showPopLoginSuccess() {
+    document.getElementById('loginsuccessfully').classList.remove('hide');
+}
+function hidePopLoginSuccess() {
+    document.getElementById('loginsuccessfully').classList.add('hide');
+}
+function showPopLoginFail() {
+    document.getElementById('loginfailed').classList.remove('hide');
+}
+function hidePopLoginFail() {
+    document.getElementById('loginfailed').classList.add('hide');
+}
+
+
+
 
 
 

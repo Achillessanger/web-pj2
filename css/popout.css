@@ -82,7 +82,7 @@
     margin: auto;
     background:white;
     width: 400px;
-    height: 290px;
+    height: 250px;
     color: #898989;
     font-size: 11px;
 }
@@ -151,3 +151,24 @@ footer{
 #login-ic-input button{
     cursor: pointer;
 }
+
+
+.pop-remind-div{
+    position: fixed;
+    z-index: 1200;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin: auto;
+    background:white;
+    width: 200px;
+    height: 70px;
+    color: black;
+    border: black 1px solid;
+    font-size: 20px;
+}
+.pop-remind-div p{
+     text-align: center;
+    vertical-align: center;
+ }

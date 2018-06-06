@@ -9,7 +9,6 @@
 $_mysqli = mysqli_connect('localhost','root','');
 mysqli_select_db($_mysqli,'artstore');
 $_mysqli -> query("SET NAMES utf8");
-
 echo <<<REGISTERDIV
 <div id="registerdiv" class="pop-up hide">
         <img src="../images/icons/cancel.png" class="pop-box-cancel" onclick="registerHide()">
@@ -35,27 +34,5 @@ echo <<<REGISTERDIV
     </div>
 REGISTERDIV;
 
-error_reporting(0);
-$user_name = $_POST['user_name'];
-$user_password = $_POST['user_password'];
-$user_email = $_POST['user_email'];
-$user_tel = $_POST['user_tel'];
-$user_address = $_POST['user_address'];
-$userTable = "select * from users";
-$chooseUserTable = $_mysqli ->query($userTable);
-$userNum = mysqli_num_rows($chooseUserTable);
-$user_Id = $userNum+1;
-
-$insertUserInfor = "insert into users(userID, users.name, email, password, tel, address, balance) VALUES ($user_Id ,'{$user_name}','{$user_email}','{$user_password}','{$user_tel}','{$user_address}',0)";
-$result = $_mysqli ->query($insertUserInfor);
-if($result){
-    $_SESSION["userID"] = $user_Id;
-    $_SESSION["userName"] = "$user_name";
-    echo "<script>document.location.reload()</script>";
-}
-//if(isset($_COOKIE[session_name()])){
-//    echo $_SESSION["userID"];
-//    echo $_COOKIE[session_name()];
-//}
-
+include "writesession.php"
 ?>

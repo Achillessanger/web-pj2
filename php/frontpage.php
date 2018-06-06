@@ -10,7 +10,13 @@ error_reporting(0);
 $_mysqli = mysqli_connect('localhost','root','');
 mysqli_select_db($_mysqli,'artstore');
 $_mysqli -> query("SET NAMES utf8");
-
+//if($_GET['quit']==1){
+//    $_SESSION = array();
+//    if(isset($_COOKIE[session_name()])){
+//        setcookie(session_name(),'',time()-42000,'/');
+//    }
+//    session_destroy();
+//}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,14 +42,10 @@ $_mysqli -> query("SET NAMES utf8");
             </li>
 
         </ul>
+        <div id="rightnavbar">
+            <?php include 'logornot.php'; ?>
+        </div>
 
-            <?php include 'logornot.php';
-            if(empty($_SESSION['userID'])){
-                showNavLef_tourist();
-            }else{
-                showNavLef_loged();
-            }
-            ?>
     </div>
 </nav>
 
@@ -132,6 +134,14 @@ $_mysqli -> query("SET NAMES utf8");
 
     </div>
 
+</div>
+
+
+<div id="loginsuccessfully" class="pop-remind-div hide">
+    <p>登陆成功！</p>
+</div>
+<div id="loginfailed" class="pop-remind-div hide">
+    <p>登陆失败！</p>
 </div>
 
 <footer>

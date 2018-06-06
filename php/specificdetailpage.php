@@ -42,13 +42,7 @@ $artwork = $artworkChoose -> fetch_assoc();
 
         </ul>
 
-        <?php include 'logornot.php';
-        if(empty($_SESSION['userID'])){
-            showNavLef_tourist();
-        }else{
-            showNavLef_loged();
-        }
-        ?>
+        <?php include 'logornot.php'; ?>
 
     </div>
 </nav>
