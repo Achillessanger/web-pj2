@@ -5,9 +5,13 @@
  * Date: 2018/6/5
  * Time: 0:47
  */
+session_start();
 $_mysqli = mysqli_connect('localhost','root','');
 mysqli_select_db($_mysqli,'artstore');
 $_mysqli -> query("SET NAMES utf8");
+if(empty($_SESSION["userID"]) ){
+    header("location:frontpage.php?a=1");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +23,122 @@ $_mysqli -> query("SET NAMES utf8");
     <link rel="stylesheet" href="../css/personalinformationpage.css">
 </head>
 <body>
+<nav class="navbar navbar-fixed-top">
+    <div class="container">
+        <ul class="nav pull-left left-ul">
+            <li class="nav-item brand">
+                Art Store
+            </li>
+            <li class="nav-item slogen">
+                Where you find GENIUS and EXTROORDINARY
+            </li>
+
+        </ul>
+        <div id="rightnavbar">
+            <?php include 'logornot.php'; ?>
+        </div>
+    </div>
+</nav>
+
+<div class="container welcometitle">
+
+        <div class="welcome">
+            <p style="display: inline">Welcome <p style="display: inline;color: #ff5500"><?php echo $_SESSION["userName"] ?></p></p>
+        </div>
+        <div class="upload">
+            <a class="oriange" id="upload-orange">发布艺术品</a>
+        </div>
+
+</div>
+
+<?php
+$sql = "select * FROM users WHERE userID = '{$_SESSION['userID']}'";
+$result = $_mysqli ->query($sql);
+$row = $result ->fetch_assoc();
+
+?>
+
+<div class="container">
+    <div class="row content">
+        <div class="col-md-3">
+
+            <table class="personaldetails">
+                <tr>
+                    <td>用户：</td>
+                    <td><?php echo $row['name'] ?></td>
+                </tr>
+                <tr>
+                    <td>电话：</td>
+                    <td><?php echo $row['tel'] ?></td>
+                </tr>
+                <tr>
+                    <td>邮箱：</td>
+                    <td><?php echo $row['email'] ?></td>
+                </tr>
+                <tr>
+                    <td>地址：</td>
+                    <td><?php echo $row['address'] ?></td>
+                </tr>
+                <tr>
+                    <td >余额：</td>
+                    <td id="balance"><?php echo $row['balance'] ?></td>
+                </tr>
+                <tr class="rechargetr">
+                    <td colspan="2">
+                        <button class="rechargebut" onclick="showCharge()">充值信仰</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-9">
+            <div class="row uploaded">
+                <div class="card">
+                    <div class="card-header">
+                        <p style="text-align: left" class="card-text">我上传的艺术品：</p>
+                    </div>
+                    <div class="card-block">
+                        此处是我上传的艺术品
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card">
+                    <div class="card-header">
+                        <p style="text-align: left" class="card-text">我的订单列表：</p>
+                    </div>
+                    <div class="card-block">
+                        此处是我的订单
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card">
+                    <div class="card-header">
+                        <p style="text-align: left" class="card-text">我的卖出列表：</p>
+                    </div>
+                    <div class="card-block">
+                        此处是我卖出去的
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="charge-pop" class="charge-pop hide">
+    <img src="../images/icons/cancel.png"  onclick="hideCharge()">
+    <form method="post" id="chargeform">
+        <p>充值金额：</p>
+        <input type="number" placeholder="请输入充值金额" min="1" id="chargeinput" name="charge"><br>
+        <button type="submit" id="chargebtn" onclick="addMoney()">确认充值</button>
+    </form>
+    <?php
+    if(isset($_POST['charge'])){
+    $_SESSION['balance'] = intval($row['balance']) + intval($_POST['charge']);
+    }
+    ?>
+
+</div>
 
 
 
@@ -27,7 +147,8 @@ $_mysqli -> query("SET NAMES utf8");
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script type="text/javascript" src="linkToSearchPagereg.js"></script>
-<script type="text/javascript" src="Buttons.js"></script>
+<!--<script type="text/javascript" src="linkToSearchPagereg.js"></script>-->
+<script type="text/javascript" src="../js/buttons.js"></script>
+<script type="text/javascript" src="../js/register.js"></script>
 </body>
 </html>

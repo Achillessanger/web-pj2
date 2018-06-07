@@ -14,8 +14,9 @@ $artworkID = $_GET['artworkID'];
 $artworkForm = "select * FROM artworks WHERE artworkID = '{$artworkID}'";
 $artworkChoose = $_mysqli -> query($artworkForm);
 $artwork = $artworkChoose -> fetch_assoc();
-//$viewNum = $artwork['view'];
-//mysqli_query($_mysqli,"UPDATE artworks SET artworks.view ={($viewNum+1)}");
+$viewNum = $artwork['view'];
+$newviewNum =intval($viewNum)+1;
+mysqli_query($_mysqli,"update artworks set artworks.view = {$newviewNum} WHERE artworkID = '{$artworkID}'");
 ?>
 <!DOCTYPE html>
 <html lang="en">

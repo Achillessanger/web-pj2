@@ -10,13 +10,9 @@ error_reporting(0);
 $_mysqli = mysqli_connect('localhost','root','');
 mysqli_select_db($_mysqli,'artstore');
 $_mysqli -> query("SET NAMES utf8");
-//if($_GET['quit']==1){
-//    $_SESSION = array();
-//    if(isset($_COOKIE[session_name()])){
-//        setcookie(session_name(),'',time()-42000,'/');
-//    }
-//    session_destroy();
-//}
+if(isset($_GET['a'])){
+    echo "<script>alert(\"请先登录\");</script>";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

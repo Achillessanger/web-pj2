@@ -1,0 +1,152 @@
+@font-face {
+    font-family: BEYNO;
+    src: url("../fonts/BEYNO.otf");
+}
+body{
+    margin-bottom: 0px;
+}
+
+.brand{
+    font-family: BEYNO;
+    font-size: x-large;
+    font-weight: bolder;
+}
+.left-ul>li{
+    margin-right: 10px;
+}
+.slogen{
+    padding-top: 11px;
+}
+.right-a{
+    line-height: 69px;
+    font-family: Arial,sans-serif;
+    font-size: 14px;
+    text-align: left;
+    color: #1e1e1e;
+    cursor: pointer;
+}
+.right-a:hover{
+    color: #a19e9d!important;
+}
+.welcome{
+    float: right;
+    background: white;
+    padding: 20px 0;
+    margin-right: 20px;
+    overflow: auto;
+    padding-bottom: 0px;
+}
+.welcometitle{
+    overflow: auto;
+    width: 1164px;
+    background: white;
+    border-bottom: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
+}
+.oriange{
+    color: #ff5500;
+}
+.oriange:hover{
+    color: #fb9e3a;
+}
+.upload{
+    float: left;
+    background: white;
+    padding: 20px 0;
+    margin-left: 20px;
+    overflow: auto;
+    padding-bottom: 0px;
+}
+
+#upload-orange{
+    color: #ff5500;
+    cursor: pointer;
+}
+#upload-orange:hover{
+    color: #fb9e3a;
+}
+.content{
+    margin-top: 20px;
+}
+.rechargebut{
+    background: white;
+    color: black;
+    font-size: 13px;
+    width: 100px;
+    border: #e5e5e5 solid thin;
+    outline: none;
+    cursor: pointer;
+    margin-top: 20px;
+    height: 30px;
+
+}
+.rechargebut:hover{
+    border: black solid thin;
+}
+.personaldetails{
+    color: #898989;
+    overflow: auto;
+}
+.charge-pop{
+    position: fixed;
+    z-index: 1200;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin: auto;
+    background:white;
+    width: 300px;
+    height: 170px;
+    color: black;
+    border: black 1px solid;
+    font-size: 15px;
+}
+.charge-pop p{
+    text-align: center;
+    vertical-align: center;
+    margin-left: 30px;
+}
+
+#charge-pop input{
+    width: 200px;
+    height: 25px;
+    margin-left: 50px;
+}
+#charge-pop button{
+    box-sizing: content-box;
+    margin-bottom: 15px;
+    background: white;
+    color: black;
+    min-height: 38px;
+    font-size: 10px;
+    min-width: 88px;
+    border: #e5e5e5 solid thin;
+    outline: none;
+    width: 200px;
+    cursor: pointer;
+    padding: 0;
+    margin-top: 20px;
+   margin-left: 50px;
+}
+
+#charge-pop button:hover{
+    border: black solid thin;
+}
+#charge-pop img{
+    height:25px;
+    width: 25px;
+    float: right;
+    cursor: pointer;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+#charge-pop{
+    overflow: auto;
+}
+.hide{
+    display: none;
+}
+.card{
+    width: 100%;
+}

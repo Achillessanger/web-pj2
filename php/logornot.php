@@ -43,7 +43,7 @@ function showNavLef_loged(){
     echo '
 <ul class="nav pull-right">
             <li class="nav-item">
-            <a href="" class="nav-link right-a"><i class="fa fa-user">'.$_SESSION["userName"].'</i> </a>
+            <a href="personalinformationpage.php" class="nav-link right-a"><i class="fa fa-user">'.$_SESSION["userName"].'</i> </a>
             </li>
             <li class="nav-item ">
                 <a href="#" class="nav-link right-a"><i class="fa fa-shopping-cart">购物车</i> </a>
