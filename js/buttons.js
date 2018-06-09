@@ -1,3 +1,4 @@
+// 充值界面btn的onclick（）
 function addMoney() {
     document.getElementById('chargeform').submit();
     if (window.XMLHttpRequest)
@@ -11,10 +12,16 @@ function addMoney() {
             document.getElementById('balance').innerText = xmlhttp.responseText;
         }
     }
-    xmlhttp.open("POST","addmoney.php",true)
-    xmlhttp.send();
+    if(parseInt(document.getElementById('chargeinput').value)==parseFloat(document.getElementById('chargeinput').value)&&document.getElementById('chargeinput').value>0){
+        xmlhttp.open("GET","addmoney.php?add="+document.getElementById('chargeinput').value,true)
+        xmlhttp.send();
+    }else if(document.getElementById('chargeinput').value<=0){
+        alert("请选择正整数充值");
+    } else {
+        alert("请按整数充值");
+    }
 
-    // hideCharge();
+    hideCharge();
 }
 function showCharge() {
     document.getElementById('charge-pop').classList.remove('hide');
@@ -22,4 +29,16 @@ function showCharge() {
 
 function hideCharge() {
     document.getElementById('charge-pop').classList.add('hide');
+}
+
+//商品详情页面 添加购物车btn 的onclick()
+function addToShoppingCart() {
+    showAddtoSC();
+    setTimeout(hideAddtoSC,500);
+}
+function showAddtoSC() {
+    document.getElementById('addtocartsuccessfully').classList.remove('hide');
+}
+function hideAddtoSC() {
+    document.getElementById('addtocartsuccessfully').classList.add('hide');
 }

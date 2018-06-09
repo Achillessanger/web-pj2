@@ -132,11 +132,11 @@ $row = $result ->fetch_assoc();
         <input type="number" placeholder="请输入充值金额" min="1" id="chargeinput" name="charge"><br>
         <button type="submit" id="chargebtn" onclick="addMoney()">确认充值</button>
     </form>
-    <?php
-    if(isset($_POST['charge'])){
-    $_SESSION['balance'] = intval($row['balance']) + intval($_POST['charge']);
-    }
-    ?>
+<!--    --><?php
+//    if(isset($_POST['charge'])){
+//    $_SESSION['balance'] = intval($row['balance']) + intval($_POST['charge']);
+//    }
+//    ?>
 
 </div>
 

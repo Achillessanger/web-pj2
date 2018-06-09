@@ -11,7 +11,8 @@ $_mysqli = mysqli_connect('localhost','root','');
 mysqli_select_db($_mysqli,'artstore');
 $_mysqli -> query("SET NAMES utf8");
 if(isset($_GET['a'])){
-    echo "<script>alert(\"请先登录\");</script>";
+    echo "<script>alert(\"请先登录\");window.location.href=\"frontpage.php\"</script>";
+
 }
 ?>
 <!DOCTYPE html>

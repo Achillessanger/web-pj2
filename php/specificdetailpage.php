@@ -117,16 +117,27 @@ PRICE;
                     }
                     echo <<<BUTTONS
                 <div class="buttons text-center">
-                    <button class="blackbutton" onclick="">ADD TO WISH LIST</button>
+                <form method="post" id="addtocart" name="addtocart"><button class="blackbutton" onclick="addToShoppingCart();" type="submit" name="addtocartbtn" onsubmit="addToShoppingCart()">ADD TO WISH LIST</button></form>
+                    
                     <button class="whitebutton" onclick="">ADD TO SHOPPING CART</button>
                 </div>
 BUTTONS;
-
+                    if(isset($_POST["addtocartbtn"])){
+                        $add = "insert into carts(cartID,userID,artworkID) VALUES ({$_SESSION["userID"]} ,{$_SESSION["userID"]},{$artworkID})";
+                        $result =mysqli_query($_mysqli,$add);
+                        if($result){
+                            echo "<script src='../js/buttons.js'>addToShoppingCart();</script>";
+                        }
+                    }
                     ?>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<div id="addtocartsuccessfully" class="pop-remind-div hide">
+    <p>添加成功！</p>
 </div>
 
 
@@ -140,6 +151,7 @@ BUTTONS;
 <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="../js/register.js" type="text/javascript"></script>
+<script src="../js/buttons.js" type="text/javascript"></script>
 <!--<script type="text/javascript" src="register.js"></script>-->
 <!--<script type="text/javascript" src="Buttons.js"></script>-->
 <!--<script type="text/javascript" src="enlarge.js"></script>-->

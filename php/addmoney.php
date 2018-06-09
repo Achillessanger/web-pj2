@@ -10,14 +10,15 @@ $_mysqli = mysqli_connect('localhost','root','');
 mysqli_select_db($_mysqli,'artstore');
 $_mysqli -> query("SET NAMES utf8");
 
-//$_addMon =intval( $_POST['charge']);
-//$userID = $_SESSION['userID'];
-//$sql = "select * FROM users WHERE userID = {$_SESSION['userID']}";
-//$result = $_mysqli ->query($sql);
-//$row = $result ->fetch_assoc();
-//$premon =intval( $row['balance']);
-//$totalmon = $_addMon + $premon;
-$add = "update users set balance = {$_SESSION['balance']} WHERE userID = {$_SESSION['userID']}";
+
+$sql = "select * FROM users WHERE userID = '{$_SESSION['userID']}'";
+$result = $_mysqli ->query($sql);
+$row = $result ->fetch_assoc();
+$premon = $row['balance'];
+
+$addmon = $_GET['add'];
+$newbalance = intval($premon)+intval($addmon);
+$add = "update users set balance = {$newbalance} WHERE userID = {$_SESSION['userID']}";
 $result2 = $_mysqli ->query($add);
-echo $_SESSION['balance'];
+echo $newbalance;
 ?>
