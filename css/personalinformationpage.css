@@ -150,3 +150,18 @@ body{
 .card{
     width: 100%;
 }
+.orderform{
+    font-size: 14px;
+    margin-top: 5px;
+    /*border-bottom: 1px #898989 solid;*/
+    /*border-top:1px #898989 solid;*/
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+#ordername{
+    color: black;
+}
+#ordername:hover{
+    color: #a19e9d;
+}

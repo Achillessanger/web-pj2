@@ -46,7 +46,7 @@ function showNavLef_loged(){
             <a href="personalinformationpage.php" class="nav-link right-a"><i class="fa fa-user">'.$_SESSION["userName"].'</i> </a>
             </li>
             <li class="nav-item ">
-                <a href="#" class="nav-link right-a"><i class="fa fa-shopping-cart">购物车</i> </a>
+                <a href="shoppingcart.php" class="nav-link right-a"><i class="fa fa-shopping-cart">购物车</i> </a>
             </li>
             <li class="nav-item ">
                 <a href="specificdetailpage.php?artworkID=351" class="nav-link right-a"><i class="fa fa-navicon">详情</i></a>

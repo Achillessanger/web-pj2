@@ -26,8 +26,8 @@ if(empty($_SESSION["userID"]) ){
 <nav class="navbar navbar-fixed-top">
     <div class="container">
         <ul class="nav pull-left left-ul">
-            <li class="nav-item brand">
-                Art Store
+            <li class="nav-item brand"><a href="frontpage.php"style="text-decoration: none; color:black;">
+                    Art Store</a>
             </li>
             <li class="nav-item slogen">
                 Where you find GENIUS and EXTROORDINARY
@@ -90,6 +90,9 @@ $row = $result ->fetch_assoc();
                 </tr>
             </table>
         </div>
+        <?php
+            $myOrdersForm = mysqli_query($_mysqli,"select * FROM orders WHERE ownerID ='{$_SESSION['userID']}' ");
+        ?>
         <div class="col-md-9">
             <div class="row uploaded">
                 <div class="card">
@@ -97,7 +100,7 @@ $row = $result ->fetch_assoc();
                         <p style="text-align: left" class="card-text">我上传的艺术品：</p>
                     </div>
                     <div class="card-block">
-                        此处是我上传的艺术品
+
                     </div>
                 </div>
             </div>
@@ -107,7 +110,22 @@ $row = $result ->fetch_assoc();
                         <p style="text-align: left" class="card-text">我的订单列表：</p>
                     </div>
                     <div class="card-block">
-                        此处是我的订单
+                        <table class="orderform" cellspacing="10px">
+                            <?php
+                                while ($myOrders = $myOrdersForm ->fetch_assoc()) {
+                                    $orderInArtworks = mysqli_query($_mysqli, "select title,artworkID FROM artworks WHERE orderID='{$myOrders["orderID"]}'");
+                                    $myVeryOrder = $orderInArtworks->fetch_assoc();
+                                    echo <<<MYORDERS
+                                    <tr>
+                                <td width="10%">订单编号：{$myOrders["orderID"]}</td>
+                                <td width="40%" style="padding-left: 15px"><a href="specificdetailpage.php?artworkID={$myVeryOrder["artworkID"]}" style="text-decoration: none;" id="ordername">商品名称：{$myVeryOrder["title"]}</a></td>
+                                <td width="30%">订单时间：{$myOrders["timeCreated"]}</td>
+                                <td width="20%">订单总金额：$ {$myOrders["sum"]}</td>
+                                </tr>
+MYORDERS;
+                                }
+                            ?>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -132,11 +150,6 @@ $row = $result ->fetch_assoc();
         <input type="number" placeholder="请输入充值金额" min="1" id="chargeinput" name="charge"><br>
         <button type="submit" id="chargebtn" onclick="addMoney()">确认充值</button>
     </form>
-<!--    --><?php
-//    if(isset($_POST['charge'])){
-//    $_SESSION['balance'] = intval($row['balance']) + intval($_POST['charge']);
-//    }
-//    ?>
 
 </div>
 

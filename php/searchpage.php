@@ -27,8 +27,8 @@ $_mysqli -> query("SET NAMES utf8");
 <nav class="navbar navbar-fixed-top">
     <div class="container">
         <ul class="nav pull-left left-ul">
-            <li class="nav-item brand">
-                Art Store
+            <li class="nav-item brand"><a href="frontpage.php"style="text-decoration: none; color:black;">
+                    Art Store</a>
             </li>
             <li class="nav-item slogen">
                 Where you find GENIUS and EXTROORDINARY

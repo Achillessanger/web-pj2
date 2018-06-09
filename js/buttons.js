@@ -33,44 +33,32 @@ function hideCharge() {
 
 //商品详情页面 添加购物车btn 的onclick()
 function addToShoppingCart() {
-    showAddtoSC();
-    setTimeout(hideAddtoSC,500);
-}
-function showAddtoSC() {
     document.getElementById('addtocartsuccessfully').classList.remove('hide');
+    setTimeout(hideAddtoSC,500);
 }
 function hideAddtoSC() {
     document.getElementById('addtocartsuccessfully').classList.add('hide');
 }
 
 function addToShoppingCartAlready() {
-    showAddtoSCAlready();
-    setTimeout(hideAddtoSCAlready,500);
-}
-function showAddtoSCAlready() {
     document.getElementById('addtocartalready').classList.remove('hide');
+    setTimeout(hideAddtoSCAlready,500);
 }
 function hideAddtoSCAlready() {
     document.getElementById('addtocartalready').classList.add('hide');
 }
 
 function alreadySold() {
-    showalreadySold();
-    setTimeout(hidealreadySold,500);
-}
-function showalreadySold() {
     document.getElementById('alreadySold').classList.remove('hide');
+    setTimeout(hidealreadySold,500);
 }
 function hidealreadySold() {
     document.getElementById('alreadySold').classList.add('hide');
 }
 
 function pleaseLogIn() {
-    showpleaseLogIn();
-    setTimeout(hidepleaseLogIn,500);
-}
-function showpleaseLogIn() {
     document.getElementById('pleaselogin').classList.remove('hide');
+    setTimeout(hidepleaseLogIn,500);
 }
 function hidepleaseLogIn() {
     document.getElementById('pleaselogin').classList.add('hide');
@@ -108,8 +96,9 @@ function operateCart() {
 
 }
 
-
-function deleteGood(obj,id) {
+//购物车页面 删除按钮
+function deleteGood(obj,id,price) {
+    var total = document.getElementById("puttotalmon").innerText;
     if (window.XMLHttpRequest)
     {
         xmlhttp=new XMLHttpRequest();// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
@@ -119,9 +108,82 @@ function deleteGood(obj,id) {
     xmlhttp.onreadystatechange = function (ev) {
         if (xmlhttp.readyState==4 && xmlhttp.status==200) {
             obj.parentNode.parentNode.parentNode.removeChild(obj.parentNode.parentNode);
-            // document.getElementById("paybtn").innerText = "PAY $"+ xmlhttp.responseText;
+            document.getElementById("paybtn").innerText = "PAY $" +xmlhttp.responseText;
+            document.getElementById("puttotalmon").innerText = xmlhttp.responseText;
         }
     }
-    xmlhttp.open("GET","deletegood.php?artworkID="+id,true);//+"?price="+price
+    xmlhttp.open("GET","deletegood.php?artworkID="+id+"&price="+price+"&total="+total,true);
     xmlhttp.send();
+}
+
+//购物车页面 结账btn
+function pay() {
+    var total = document.getElementById("puttotalmon").innerText;
+    if (window.XMLHttpRequest)
+    {
+        xmlhttp=new XMLHttpRequest();// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+    } else {
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");// IE6, IE5 浏览器执行代码
+    }
+    xmlhttp.onreadystatechange = function (ev) {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            if(xmlhttp.responseText.charAt(0)==0){
+                payFailed_deleted();
+            }
+            if(xmlhttp.responseText.charAt(0)==1){
+                payFailed_priceChanged();
+            }
+            if(xmlhttp.responseText.charAt(0)==2){
+                payFailed_bought();
+            }
+            if(xmlhttp.responseText.charAt(0)==3){
+                payFailed_noEnoughMoney();
+            }
+            if(xmlhttp.responseText.charAt(0)==4){
+                paySuccessfully()
+            }
+        }
+    }
+    xmlhttp.open("GET","pay.php?mytotal="+total,true);
+    xmlhttp.send();
+}
+function payFailed_deleted() {
+    document.getElementById('goodDeleted').classList.remove('hide');
+    setTimeout(hidepayFailed0,500);
+}
+function hidepayFailed0() {
+    document.getElementById('goodDeleted').classList.add('hide');
+}
+
+function payFailed_priceChanged() {
+    document.getElementById('priceChanged').classList.remove('hide');
+    setTimeout(hidepayFailed1,500);
+}
+function hidepayFailed1() {
+    document.getElementById('priceChanged').classList.add('hide');
+}
+
+function payFailed_bought() {
+    document.getElementById('goodSold').classList.remove('hide');
+    setTimeout(hidepayFailed2,500);
+}
+function hidepayFailed2() {
+    document.getElementById('goodSold').classList.add('hide');
+}
+
+function payFailed_noEnoughMoney() {
+    document.getElementById('nomoney').classList.remove('hide');
+    setTimeout(hidepayFailed3,500);
+}
+function hidepayFailed3() {
+    document.getElementById('nomoney').classList.add('hide');
+}
+
+function paySuccessfully() {
+    document.getElementById('paidsuccessfully').classList.remove('hide');
+    setTimeout(hidepayFailed4,500);
+}
+function hidepayFailed4() {
+    document.getElementById('paidsuccessfully').classList.add('hide');
+    document.location.reload();
 }
