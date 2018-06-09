@@ -117,18 +117,10 @@ PRICE;
                     }
                     echo <<<BUTTONS
                 <div class="buttons text-center">
-                <form method="post" id="addtocart" name="addtocart"><button class="blackbutton" onclick="addToShoppingCart();" type="submit" name="addtocartbtn" onsubmit="addToShoppingCart()">ADD TO WISH LIST</button></form>
-                    
-                    <button class="whitebutton" onclick="">ADD TO SHOPPING CART</button>
+                <!--<form method="post" id="addtocart" name="addtocart"></form>-->
+                   <button class="blackbutton"  onclick="operateCart();" name="addtocartbtn">ADD TO SHOPPING CART</button>
                 </div>
 BUTTONS;
-                    if(isset($_POST["addtocartbtn"])){
-                        $add = "insert into carts(cartID,userID,artworkID) VALUES ({$_SESSION["userID"]} ,{$_SESSION["userID"]},{$artworkID})";
-                        $result =mysqli_query($_mysqli,$add);
-                        if($result){
-                            echo "<script src='../js/buttons.js'>addToShoppingCart();</script>";
-                        }
-                    }
                     ?>
                 </div>
             </div>
@@ -138,6 +130,15 @@ BUTTONS;
 
 <div id="addtocartsuccessfully" class="pop-remind-div hide">
     <p>添加成功！</p>
+</div>
+<div id="addtocartalready" class="pop-remind-div hide">
+    <p>已经添加！</p>
+</div>
+<div id="alreadySold" class="pop-remind-div hide">
+    <p>已售罄！</p>
+</div>
+<div id="pleaselogin" class="pop-remind-div hide">
+    <p>请先登录！</p>
 </div>
 
 
