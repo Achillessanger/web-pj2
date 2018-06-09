@@ -107,3 +107,21 @@ function operateCart() {
     xmlhttp.send();
 
 }
+
+
+function deleteGood(obj,id) {
+    if (window.XMLHttpRequest)
+    {
+        xmlhttp=new XMLHttpRequest();// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+    } else {
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");// IE6, IE5 浏览器执行代码
+    }
+    xmlhttp.onreadystatechange = function (ev) {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            obj.parentNode.parentNode.parentNode.removeChild(obj.parentNode.parentNode);
+            // document.getElementById("paybtn").innerText = "PAY $"+ xmlhttp.responseText;
+        }
+    }
+    xmlhttp.open("GET","deletegood.php?artworkID="+id,true);//+"?price="+price
+    xmlhttp.send();
+}
