@@ -38,7 +38,6 @@ $_mysqli -> query("SET NAMES utf8");
         <div id="rightnavbar">
             <?php include 'logornot.php'; ?>
         </div>
-
     </div>
 </nav>
 
@@ -49,11 +48,60 @@ $_mysqli -> query("SET NAMES utf8");
 <?php include 'login.php';?>
 
 <div class="container searchbar">
-        <select class=""></select>
-        <i class="fa fa-search"></i>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <div class="checkbox" id="searchBy">
+            <!--按什么搜索-->
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="inlineCheckbox1" value="1" name="searchby" checked="checked"> 按照艺术品名称
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="inlineCheckbox2" value="2" name="searchby"> 按照艺术品简介
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="inlineCheckbox3" value="3" name="searchby"> 按照作者名
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <i class="fa fa-search" style="margin-top: 22px"></i>
         <input type="text" placeholder="search" class="searchbar-input" id="searchbar-input" maxlength="50">
+    </div>
 </div>
 
+<div class="selectHolder container">
+    <div class="searchcontent" id="searchcontent"></div>
+    <select class="select">
+        <option value="sPrice">价格</option>
+        <option value="sHeat">热度</option>
+        <option value="sTitle">标题</option>
+    </select>
+</div>
+
+<div class="container allArtworksHolder">
+    <table class="artworksArea" id="artworksArea">
+        <?php include "showsearchresult.php"; ?>
+    </table>
+</div>
+
+<div class="container pagescontainer">
+    <div class="pagesnav">
+
+            <ul class="pagination" style="width: 80%" id="searchresultul">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <?php include "showpagesnav.php"; ?>
+<!--                <li class="page-item"><a class="page-link" href="#">1</a></li>-->
+<!--                <li class="page-item active"><a class="page-link" href="#">2</a></li>-->
+<!--                <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+
+    </div>
+
+
+
+</div>
 
 
 
@@ -61,6 +109,7 @@ $_mysqli -> query("SET NAMES utf8");
 <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="../js/register.js" type="text/javascript"></script>
+<script src="../js/pagination.js" type="text/javascript"></script>
 </body>
 
 </html>
