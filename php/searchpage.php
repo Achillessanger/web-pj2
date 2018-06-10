@@ -66,16 +66,27 @@ $_mysqli -> query("SET NAMES utf8");
     </div>
     <div class="row">
         <i class="fa fa-search" style="margin-top: 22px"></i>
-        <input type="text" placeholder="search" class="searchbar-input" id="searchbar-input" maxlength="50">
+        <input type="text" placeholder="search" class="searchbar-input" id="searchbar-input" maxlength="50" value="<?php echo $_GET["keywords"];?>">
     </div>
 </div>
 
 <div class="selectHolder container">
     <div class="searchcontent" id="searchcontent"><?php echo $_GET["keywords"]?> </div>
     <select class="select" id="displaiedBy" onchange="changeSelect();">
-        <option value="1">价格</option>
-        <option value="2">热度</option>
-        <option value="3">标题</option>
+        <?php
+        $selectvalue = $_GET["displayprin"];
+        if(!$selectvalue||$selectvalue == ""||$selectvalue == 1){
+            echo '<option value="1" selected>价格</option><option value="2">热度</option><option value="3">标题</option>';
+        }else{
+            if($selectvalue == 2){
+                echo '<option value="1">价格</option><option value="2" selected>热度</option><option value="3">标题</option>';
+            }
+            if($selectvalue == 3){
+                echo '<option value="1">价格</option><option value="2">热度</option><option value="3" selected>标题</option>';
+            }
+        }
+
+        ?>
     </select>
 
 </div>
@@ -90,12 +101,19 @@ $_mysqli -> query("SET NAMES utf8");
     <div class="pagesnav">
 
             <ul class="pagination" style="width: 80%" id="searchresultul">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" >Previous</a></li>
                 <?php include "showpagesnav.php"; ?>
-<!--                <li class="page-item"><a class="page-link" href="#">1</a></li>-->
-<!--                <li class="page-item active"><a class="page-link" href="#">2</a></li>-->
-<!--                <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                <li class="page-item"><a class="page-link">Next</a></li>
+                <div style="margin-left: 20px;padding-top: 5px;color: #333333;font-weight: bolder"><input type="number" style="width: 60px;" min="1" id="jumpinput"> /<?php
+                    if(empty($_SESSION["sql"])){
+                        $x = mysqli_query($_mysqli,"select artworkID FROM artworks WHERE orderID IS NULL");
+                        echo mysqli_num_rows($x);
+                    }else{
+                        $x = mysqli_query($_mysqli,$_SESSION["sql"]);
+                        echo mysqli_num_rows($x);
+                    }
+                    ?> <a id="jump" onclick="changePageByNav2()">跳转</a></div>
+
             </ul>
 
     </div>

@@ -47,7 +47,7 @@ if(!$keywords|| $keywords==""){
     if(!(strpos("$searchprin_str","3")===false)){
         $searchprin[2] = "artist LIKE '%{$keywords}%'";
     }
-    $sql = "select * FROM artworks WHERE (" .implode(" or ",$searchprin).") AND (orderID IS NULL) ".$diaplayprin;
+    $sql = "select * FROM artworks WHERE (" .implode(" or ",$searchprin).") AND (orderID IS NULL) ".$sqldisplayprin;
     $result = mysqli_query($_mysqli,$sql);
     $worksnum = mysqli_num_rows($result);
     if($worksnum % 16 == 0){
@@ -56,6 +56,8 @@ if(!$keywords|| $keywords==""){
         $pagesnum = intval($worksnum/16)+1;
     }
 }
+
+
 
 $_SESSION["sql"]=$sql;
 

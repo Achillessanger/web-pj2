@@ -65,7 +65,7 @@ if(isset($_GET['a'])){
         <!--轮播图片-->
         <div class="carousel-inner">
             <?php
-            $carouselPics = "select imageFileName,title,description,artworkID FROM artworks ORDER BY artworks.view DESC limit 3";
+            $carouselPics = "select imageFileName,title,description,artworkID FROM artworks WHERE orderID IS NULL ORDER BY artworks.view DESC limit 3";
             $result = $_mysqli -> query($carouselPics);
 
             //第一张要有active属性
@@ -114,7 +114,7 @@ if(isset($_GET['a'])){
     <div class="row text-center align-items-top">
         <?php
 
-        $newestPics = "select imageFileName,title,description,artworkID FROM artworks ORDER BY artworks.timeReleased DESC limit 3";
+        $newestPics = "select imageFileName,title,description,artworkID FROM artworks WHERE orderID IS NULL ORDER BY artworks.timeReleased DESC limit 3";
         $result = $_mysqli -> query($newestPics);
         while ($row = $result -> fetch_assoc()){
             echo '

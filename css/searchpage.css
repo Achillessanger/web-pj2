@@ -169,3 +169,9 @@ body{
     font-size: 11px;
     font-weight: bolder;
 }
+#jump{
+    cursor: pointer;
+}
+#jump:hover{
+    color: #898989;
+}

@@ -117,8 +117,8 @@ $row = $result ->fetch_assoc();
                                     $myVeryOrder = $orderInArtworks->fetch_assoc();
                                     echo <<<MYORDERS
                                     <tr>
-                                <td width="10%">订单编号：{$myOrders["orderID"]}</td>
-                                <td width="40%" style="padding-left: 15px"><a href="specificdetailpage.php?artworkID={$myVeryOrder["artworkID"]}" style="text-decoration: none;" id="ordername">商品名称：{$myVeryOrder["title"]}</a></td>
+                                <td width="15%">订单编号：{$myOrders["orderID"]}</td>
+                                <td width="35%" ><a href="specificdetailpage.php?artworkID={$myVeryOrder["artworkID"]}" style="text-decoration: none;" id="ordername">商品名称：{$myVeryOrder["title"]}</a></td>
                                 <td width="30%">订单时间：{$myOrders["timeCreated"]}</td>
                                 <td width="20%">订单总金额：$ {$myOrders["sum"]}</td>
                                 </tr>
