@@ -29,7 +29,6 @@ if(!(strpos("$searchprin_str","3")===false)){
 }
 $sql = "select * FROM artworks WHERE (" .implode(" or ",$searchprin).") AND (orderID IS NULL)";
 
-$_SESSION["searchsql"]=$sql;///////////////////////////////////
 
 $result = mysqli_query($_mysqli,$sql);
 if(mysqli_num_rows($result)==0){

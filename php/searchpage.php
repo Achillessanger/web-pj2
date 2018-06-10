@@ -71,12 +71,13 @@ $_mysqli -> query("SET NAMES utf8");
 </div>
 
 <div class="selectHolder container">
-    <div class="searchcontent" id="searchcontent"></div>
-    <select class="select">
-        <option value="sPrice">价格</option>
-        <option value="sHeat">热度</option>
-        <option value="sTitle">标题</option>
+    <div class="searchcontent" id="searchcontent"><?php echo $_GET["keywords"]?> </div>
+    <select class="select" id="displaiedBy" onchange="changeSelect();">
+        <option value="1">价格</option>
+        <option value="2">热度</option>
+        <option value="3">标题</option>
     </select>
+
 </div>
 
 <div class="container allArtworksHolder">

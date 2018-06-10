@@ -86,7 +86,7 @@ PHOTO;
                 <p>Genre:   {$artwork['genre']}</p>
                 <p>Dimensions:   {$artwork['width']} * {$artwork['height']}</p>
                 <p>Released time:   {$artwork['timeReleased']} </p>
-                <p>view:    {$artwork['view']}</p>
+                <p>view:    {$newviewNum}</p>
 DETAILS;
                     ?>
                 </div>

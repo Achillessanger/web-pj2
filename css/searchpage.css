@@ -164,3 +164,8 @@ body{
     vertical-align: center;
     font-size: 25px;
 }
+.paintingprice{
+    color: #fb9e3a;
+    font-size: 11px;
+    font-weight: bolder;
+}
