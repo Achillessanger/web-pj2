@@ -101,7 +101,7 @@ function submitForm2(id) {
         xmlhttp.onreadystatechange = function (ev) {
             if (xmlhttp.readyState==4 && xmlhttp.status==200) {
                 alert(xmlhttp.responseText)
-                window.location.href = "../php/personalinformationpage.php";
+                // window.location.href = "../php/personalinformationpage.php";
             }
         }
         xmlhttp.open("GET","updatemygood.php?id="+id,true);
