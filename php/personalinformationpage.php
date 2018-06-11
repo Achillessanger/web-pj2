@@ -109,7 +109,7 @@ $row = $result ->fetch_assoc();
                                 <td width="15%"><img src="../resources/img/{$myUploadsStillNotSold["imageFileName"]}" width="100%"></td>
                                 <td width="30%" class="text-center"><a href="specificdetailpage.php?artworkID={$myUploadsStillNotSold["artworkID"]}" style="text-decoration: none;font-weight: bolder" id="link">{$myUploadsStillNotSold["title"]}</a></td>
                                 <td width="30%" >发布时间：{$myUploadsStillNotSold["timeReleased"]}</td>
-                                <td width="25%"><button class="blackbutton2" style="width: 80%" id="modify" onclick="modifyContents(({$myUploadsStillNotSold["artworkID"]}))">MODIFY CONTENT</button><button class="whitebutton2" style="width: 80%">DELETE IT</button></td>
+                                <td width="25%"><button class="blackbutton2" style="width: 80%" id="modify" onclick="modifyContents(({$myUploadsStillNotSold["artworkID"]}))">MODIFY CONTENT</button><button class="whitebutton2" style="width: 80%" onclick="deleteMyGood(({$myUploadsStillNotSold["artworkID"]}));">DELETE IT</button></td>
                                 </tr>
 MYUPLOADSNOTSOLD;
 
@@ -150,7 +150,35 @@ MYORDERS;
                         <p style="text-align: left" class="card-text">我的卖出列表：</p>
                     </div>
                     <div class="card-block">
-                        此处是我卖出去的
+                        <table>
+                            <?php
+                            $mySoldForm = mysqli_query($_mysqli,"select * FROM artworks WHERE ownerID = '{$_SESSION["userID"]}' AND orderID IS NOT NULL ");
+                            while ($mySoldGoods = $mySoldForm ->fetch_assoc()){
+                                $mySoldOrderForm = mysqli_query($_mysqli,"select * FROM orders WHERE orderID= '{$mySoldGoods["orderID"]}'");
+                                $myPayerIDrow = $mySoldOrderForm ->fetch_assoc();
+                                $myPayerInforForm = mysqli_query($_mysqli,"select * FROM users WHERE userID = '{$myPayerIDrow["ownerID"]}'");
+                                $myPayerInforrow = $myPayerInforForm ->fetch_assoc();
+                                echo <<<MYSOLD
+                            <tr style="border-bottom: 1px solid black;">
+                                <td width="15%"><img src="../resources/img/{$mySoldGoods["imageFileName"]}" width="100%"></td>
+                                <td width="35%" class="text-center"><a href="specificdetailpage.php?artworkID={$mySoldGoods["artworkID"]}" style="text-decoration: none;font-weight: bolder" id="link">{$mySoldGoods["title"]}</a></td>
+                                <td width="50" >
+                                    <table>
+                                    <tr><td>卖出时间:  {$myPayerIDrow["timeCreated"]}</td></tr>
+                                    <tr><td>成交价格： {$mySoldGoods["price"]}</td></tr>
+                                    <tr><td>购买人用户名： {$myPayerInforrow["name"]}</td></tr>
+                                    <tr><td>购买人邮箱： {$myPayerInforrow["email"]}</td></tr>
+                                    <tr><td>购买人电话： {$myPayerInforrow["tel"]}</td></tr>
+                                    <tr><td>购买人地址： {$myPayerInforrow["address"]}</td></tr>
+                                    </table>
+                                </td>
+                               
+                                </tr>
+MYSOLD;
+
+                            }
+                            ?>
+                        </table>
                     </div>
                 </div>
             </div>

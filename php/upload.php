@@ -17,6 +17,7 @@ $artworkno = $_GET["artworkID"];
 if(isset($artworkno)){
     $contentForm = mysqli_query($_mysqli,"select * FROM artworks WHERE artworkID = '{$artworkno}'");
     $veryArtwork = $contentForm ->fetch_assoc();
+    $_SESSION["uploadID"] = $artworkno;
 }
 ?>
 <!DOCTYPE html>
@@ -75,7 +76,6 @@ if(isset($artworkno)){
                 if(isset($artworkno)){
                     echo 'value="'.$veryArtwork["title"].'"';
                 } ?> >
-                <!--            <small class="text-muted">We'll never share your email with anyone else.</small>-->
             </div>
         </fieldset>
 
@@ -92,7 +92,7 @@ if(isset($artworkno)){
         <fieldset class="form-group">
             <div class="container">
                 <label for="exampleTextareaDes">Description</label>
-                <textarea class="form-control" id="exampleTextareaDes" rows="3" name="exampleTextareaDes" onblur="seeIfNoContent(this)" placeholder="This item cannot be empty" ><?php
+                <textarea class="form-control" id="exampleTextareaDes" rows="3" name="exampleTextareaDes" onblur="seeIfNoContentInTextarea(this)" placeholder="This item cannot be empty" ><?php
                     if(isset($artworkno)){
                         echo $veryArtwork["description"];
                     } ?> </textarea>
@@ -150,12 +150,13 @@ if(isset($artworkno)){
         </fieldset>
 
         <div class="container">
-            <button type="button" class="btn btn-primary" <?php if(isset($artworkno)){
-                echo 'onclick="submitForm2('.$artworkno.');"';//update
-            }else{
-                echo ' onclick="submitFrom();"';//insert
-            }
-            ?>>Submit</button>
+            <button type="button" class="btn btn-primary" onclick="submitFrom();">Submit</button>
+<!--            --><?php //if(isset($artworkno)){
+//                echo 'onclick="submitForm2('.$artworkno.');"';//update
+//            }else{
+//                echo ' onclick="submitFrom();"';//insert
+//            }
+//            ?>
         </div>
     </form>
 

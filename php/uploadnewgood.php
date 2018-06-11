@@ -5,11 +5,7 @@
  * Date: 2018/6/11
  * Time: 19:46
  */
-session_start();
-$_mysqli = mysqli_connect('localhost','root','');
-mysqli_select_db($_mysqli,'artstore');
-$_mysqli -> query("SET NAMES utf8");
-error_reporting(0);
+
 
 if(isset($_POST["inputTitle"])) {
 
@@ -28,13 +24,6 @@ if(isset($_POST["inputTitle"])) {
     $newartworkID = intval($no)+1;
     $ownerID = $_SESSION["userID"];
 
-
-//    if(isset($update)){
-////        $sql = "update artworks set artist = '{$artist}',title = '{$title}',description ='{$des}',yearOfWork = '{$year}',genre = '{$genre}',width = '{$length}',height='{$width}',price = '{$price}' WHERE artworkID = '{$_GET["id"]}'";
-//        $sql = "update artworks set title = '{$title}' WHERE artworkID = '{$artworkIDupdate}'";
-//        $xxx =mysqli_query($_mysqli,$sql);
-//
-//    }else{
         if ($_FILES["file"]["error"] > 0) {
             echo "错误：: " . $_FILES["file"]["error"] . "<br>";
         } else {
@@ -50,8 +39,7 @@ if(isset($_POST["inputTitle"])) {
                 mysqli_query($_mysqli,$sql);
             }
         }
-//    }
-
+    echo "<script>window.location.href=\"personalinformationpage.php\"</script>";
 }
 
 

@@ -191,3 +191,21 @@ function hidepayFailed4() {
 function modifyContents(artworkID) {
     window.location.href = "../php/upload.php?artworkID="+artworkID;
 }
+function deleteMyGood(artworkID) {
+    if (window.XMLHttpRequest)
+    {
+        xmlhttp=new XMLHttpRequest();// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+    } else {
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");// IE6, IE5 浏览器执行代码
+    }
+    xmlhttp.onreadystatechange = function (ev) {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            document.location.reload();
+        }
+    }
+    if(window.confirm("确定删除此项物品吗？")){
+        xmlhttp.open("GET","deletemygood.php?artworkID="+artworkID,true)
+        xmlhttp.send();
+    }
+
+}

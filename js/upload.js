@@ -33,6 +33,14 @@ function seeIfNoContent(obj) {
         obj.classList.remove("haserror");
     }
 }
+function seeIfNoContentInTextarea(obj) {
+    // alert(document.getElementById('exampleTextareaDes'))
+    if(obj.value == ""|| !obj.value){
+        obj.classList.add("haserror");
+    }else {
+        obj.classList.remove("haserror");
+    }
+}
 function seeIfPositive(obj) {
     if(parseInt(obj.value)<=0||obj.value == ""|| !obj.value){
         if(!obj.classList.contains("haserror")){
@@ -70,49 +78,14 @@ function seeIfUploadPic() {
 }
 function submitFrom() {
 
-    if(canSubmit()){
+    if (canSubmit()) {
         document.getElementById("uploadform").submit();
-
-        if (window.XMLHttpRequest)
-        {
-            xmlhttp=new XMLHttpRequest();// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
-        } else {
-            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");// IE6, IE5 浏览器执行代码
-        }
-        xmlhttp.onreadystatechange = function (ev) {
-            if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-                window.location.href = "../php/personalinformationpage.php";
-            }
-        }
-            xmlhttp.open("GET","uploadnewgood.php",true);
-            xmlhttp.send();
     }
 }
-function submitForm2(id) {
-    if(canSubmit()){
-        document.getElementById("uploadform").submit();
 
-        if (window.XMLHttpRequest)
-        {
-            xmlhttp=new XMLHttpRequest();// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
-        } else {
-            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");// IE6, IE5 浏览器执行代码
-        }
-        xmlhttp.onreadystatechange = function (ev) {
-            if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-                alert(xmlhttp.responseText)
-                // window.location.href = "../php/personalinformationpage.php";
-            }
-        }
-        xmlhttp.open("GET","updatemygood.php?id="+id,true);
-        xmlhttp.send();
-
-
-    }
-}
 function canSubmit() {
     seeIfUploadPic();
-    seeIfNoContent(title_input);seeIfNoContent(artist_input);seeIfNoContent(description_input);
+    seeIfNoContent(title_input);seeIfNoContent(artist_input);seeIfNoContentInTextarea(description_input);
     seeIfInt(year_input);
     seeIfNoContent(genre_input);
     seeIfPositive(length_input);seeIfPositive(width_input);
