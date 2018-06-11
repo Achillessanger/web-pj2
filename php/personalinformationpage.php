@@ -46,7 +46,7 @@ if(empty($_SESSION["userID"]) ){
             <p style="display: inline">Welcome <p style="display: inline;color: #ff5500"><?php echo $_SESSION["userName"] ?></p></p>
         </div>
         <div class="upload">
-            <a class="oriange" id="upload-orange">发布艺术品</a>
+            <a class="oriange" id="upload-orange" href="upload.php" style="text-decoration: none">发布艺术品</a>
         </div>
 
 </div>
@@ -100,7 +100,22 @@ $row = $result ->fetch_assoc();
                         <p style="text-align: left" class="card-text">我上传的艺术品：</p>
                     </div>
                     <div class="card-block">
+                        <table id="uploadnotsoldtable">
+                        <?php
+                            $myUploadStillNotSoldForm = mysqli_query($_mysqli,"select artworkID,imageFileName,title,timeReleased FROM artworks WHERE ownerID ='{$_SESSION['userID']}' AND orderID IS NULL ");
+                            while ($myUploadsStillNotSold = $myUploadStillNotSoldForm ->fetch_assoc()){
+                                echo <<<MYUPLOADSNOTSOLD
+                                <tr style="border-bottom: 1px solid black;">
+                                <td width="15%"><img src="../resources/img/{$myUploadsStillNotSold["imageFileName"]}" width="100%"></td>
+                                <td width="30%" class="text-center"><a href="specificdetailpage.php?artworkID={$myUploadsStillNotSold["artworkID"]}" style="text-decoration: none;font-weight: bolder" id="link">{$myUploadsStillNotSold["title"]}</a></td>
+                                <td width="30%" >发布时间：{$myUploadsStillNotSold["timeReleased"]}</td>
+                                <td width="25%"><button class="blackbutton2" style="width: 80%" id="modify" onclick="modifyContents(({$myUploadsStillNotSold["artworkID"]}))">MODIFY CONTENT</button><button class="whitebutton2" style="width: 80%">DELETE IT</button></td>
+                                </tr>
+MYUPLOADSNOTSOLD;
 
+                            }
+                        ?>
+                        </table>
                     </div>
                 </div>
             </div>

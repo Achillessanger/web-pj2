@@ -1,0 +1,51 @@
+@font-face {
+    font-family: BEYNO;
+    src: url("../fonts/BEYNO.otf");
+}
+body{
+    margin-bottom: 0px;
+}
+
+.brand{
+    font-family: BEYNO;
+    font-size: x-large;
+    font-weight: bolder;
+}
+.left-ul>li{
+    margin-right: 10px;
+}
+.slogen{
+    padding-top: 11px;
+}
+.right-a{
+    line-height: 69px;
+    font-family: Arial,sans-serif;
+    font-size: 14px;
+    text-align: left;
+    color: #1e1e1e;
+    cursor: pointer;
+}
+.right-a:hover{
+    color: #a19e9d!important;
+}
+.welcome{
+    float: right;
+    background: white;
+    padding: 20px 0;
+    margin-right: 20px;
+    overflow: auto;
+    padding-bottom: 0px;
+}
+.welcometitle{
+    overflow: auto;
+    width: 1164px;
+    background: white;
+    border-bottom: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
+}
+.uploaddiv{
+    margin-top: 30px;
+}
+.haserror{
+    border: 1px solid red;
+}

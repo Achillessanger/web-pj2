@@ -187,3 +187,7 @@ function hidepayFailed4() {
     document.getElementById('paidsuccessfully').classList.add('hide');
     document.location.reload();
 }
+
+function modifyContents(artworkID) {
+    window.location.href = "../php/upload.php?artworkID="+artworkID;
+}

@@ -107,10 +107,22 @@ $_mysqli -> query("SET NAMES utf8");
                 <div style="margin-left: 20px;padding-top: 5px;color: #333333;font-weight: bolder"><input type="number" style="width: 60px;" min="1" id="jumpinput"> /<?php
                     if(empty($_SESSION["sql"])){
                         $x = mysqli_query($_mysqli,"select artworkID FROM artworks WHERE orderID IS NULL");
-                        echo mysqli_num_rows($x);
+                        $worksnum = mysqli_num_rows($x);
+                        if($worksnum % 16 == 0){
+                            $pagesnum = $worksnum/16;
+                        }else{
+                            $pagesnum = intval($worksnum/16)+1;
+                        }
+                        echo $pagesnum;
                     }else{
                         $x = mysqli_query($_mysqli,$_SESSION["sql"]);
-                        echo mysqli_num_rows($x);
+                        $worksnum = mysqli_num_rows($x);
+                        if($worksnum % 16 == 0){
+                            $pagesnum = $worksnum/16;
+                        }else{
+                            $pagesnum = intval($worksnum/16)+1;
+                        }
+                        echo $pagesnum;
                     }
                     ?> <a id="jump" onclick="changePageByNav2()">跳转</a></div>
 

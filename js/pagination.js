@@ -78,11 +78,13 @@ function goSearch() {
 }
 
 function changeSelect() {
+
     if(document.getElementById("searchbar-input").value != ""){
         var keywords = document.getElementById("searchbar-input").value;
     }else {
         var keywords = document.getElementById("searchcontent").innerText;
     }
+
     var selectbox_choice = document.getElementById("displaiedBy").value;
 
     var url = location.href;

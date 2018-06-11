@@ -68,7 +68,7 @@ TITLESMALL;
     </div>
 </div>
 
-<div class="container contentContainer">
+<div class="container contentContainer" style="margin-bottom: 50px">
     <div class="row">
         <div class="col-md-7">
             <?php

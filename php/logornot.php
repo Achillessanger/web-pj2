@@ -23,7 +23,7 @@ function showNavLef_tourist(){
             <a href="frontpage.php" class="nav-link right-a">首页</a>
             </li>
             <li class="nav-item ">
-                <a href="#" class="nav-link right-a">搜索</a>
+                <a href="searchpage.php?searchprin=1&displayprin=1&&keywords=" class="nav-link right-a">搜索</a>
             </li>
             <li class="nav-item ">
                 <a href="specificdetailpage.php?artworkID=351" class="nav-link right-a">详情</a>
@@ -57,7 +57,7 @@ function showNavLef_loged(){
           
             <form class="form-inline navbar-form pull-right">
   
-        <a href="searchpage.php" class="nav-link right-a" ><i class="fa fa-search"></i></a>
+        <a href="searchpage.php?searchprin=1&displayprin=1&&keywords=" class="nav-link right-a" ><i class="fa fa-search"></i></a>   
   </form>
     ';
 }
