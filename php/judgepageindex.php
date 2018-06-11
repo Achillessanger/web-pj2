@@ -5,6 +5,7 @@
  * Date: 2018/6/10
  * Time: 23:51
  */
+session_start();
 $_mysqli = mysqli_connect('localhost','root','');
 mysqli_select_db($_mysqli,'artstore');
 $_mysqli -> query("SET NAMES utf8");
@@ -12,11 +13,18 @@ $_mysqli -> query("SET NAMES utf8");
 $pageIndex = $_GET["pageIndex"];
 if(empty($_SESSION["sql"])){
     $x = mysqli_query($_mysqli,"select artworkID FROM artworks WHERE orderID IS NULL");
-    $pagesnum = mysqli_num_rows($x);
+    $worksnum = mysqli_num_rows($x);
 }else{
     $x = mysqli_query($_mysqli,$_SESSION["sql"]);
-    $pagesnum = mysqli_num_rows($x);
+    $worksnum = mysqli_num_rows($x);
 }
+
+if($worksnum % 16 == 0){
+    $pagesnum = $worksnum/16;
+}else{
+    $pagesnum = intval($worksnum/16)+1;
+}
+
 if(intval($pageIndex) >$pagesnum){
     echo $pagesnum;
 }else if(intval($pageIndex) < 1){

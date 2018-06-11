@@ -175,3 +175,6 @@ body{
 #jump:hover{
     color: #898989;
 }
+#fa-search{
+    cursor: pointer;
+}

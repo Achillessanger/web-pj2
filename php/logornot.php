@@ -56,11 +56,11 @@ function showNavLef_loged(){
             </li>
           
             <form class="form-inline navbar-form pull-right">
-    <input class="form-control" type="text" placeholder="Search" width="100px" >
-        <a href="#" class="nav-link right-a" ><i class="fa fa-search"></i></a>
+  
+        <a href="searchpage.php" class="nav-link right-a" ><i class="fa fa-search"></i></a>
   </form>
     ';
 }
-
+//<input class="form-control" type="text" placeholder="Search" width="100px" >
 ?>
 

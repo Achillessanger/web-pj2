@@ -43,6 +43,27 @@ function changePageByNav2() {
     changePageByNav(index);
 }
 
+function prePage() {
+    var all = document.getElementsByClassName("page-item");
+    for(var i in all){
+        if(all[i].classList.contains("active")){
+            var index = i -1;
+            changePageByNav(index);
+            break;
+        }
+    }
+}
+function nextPage() {
+    var all = document.getElementsByClassName("page-item");
+    for(var i in all){
+        if(all[i].classList.contains("active")){
+            var index = parseInt(i)+1;
+            changePageByNav(index);
+            break;
+        }
+    }
+}
+
 document.getElementById("searchbar-input").onkeydown = function (ev) {
     var e = event || window.event || arguments.callee.caller.arguments[0];
     var keywords = document.getElementById('searchbar-input').value;
@@ -51,30 +72,18 @@ document.getElementById("searchbar-input").onkeydown = function (ev) {
        changePageByKeys(keywords);
     }
 }
+function goSearch() {
+    var keywords = document.getElementById('searchbar-input').value;
+    changePageByKeys(keywords);
+}
+
 function changeSelect() {
     if(document.getElementById("searchbar-input").value != ""){
         var keywords = document.getElementById("searchbar-input").value;
     }else {
         var keywords = document.getElementById("searchcontent").innerText;
     }
-
     var selectbox_choice = document.getElementById("displaiedBy").value;
-    // var checkbox_search = document.getElementsByName("searchby");
-    // var search_principle = [];
-    // for (var k in checkbox_search) {
-    //     if (checkbox_search[k].checked)
-    //         search_principle.push(checkbox_search[k].value);
-    // }//1名字，2简介，3作家
-    // if (search_principle.length == 0) {
-    //     alert("请选择搜索方式")
-    // } else {
-    //     var n = search_principle.length;
-    //     var search_principle_str = "";
-    //     for (var i = 0; i < n; i++) {
-    //         search_principle_str += search_principle[i] + "";
-    //     }
-    //     document.location.href = "../php/searchpage.php?searchprin=" + search_principle_str + "&displayprin=" + selectbox_choice + "&keywords=" + keywords;
-    // }
 
     var url = location.href;
     var arr = url.split("?");

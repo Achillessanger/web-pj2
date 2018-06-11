@@ -65,7 +65,7 @@ $_mysqli -> query("SET NAMES utf8");
         </div>
     </div>
     <div class="row">
-        <i class="fa fa-search" style="margin-top: 22px"></i>
+        <a  onclick="goSearch();" id="fa-search"><i class="fa fa-search" style="margin-top: 22px"></i></a>
         <input type="text" placeholder="search" class="searchbar-input" id="searchbar-input" maxlength="50" value="<?php echo $_GET["keywords"];?>">
     </div>
 </div>
@@ -101,9 +101,9 @@ $_mysqli -> query("SET NAMES utf8");
     <div class="pagesnav">
 
             <ul class="pagination" style="width: 80%" id="searchresultul">
-                <li class="page-item"><a class="page-link" >Previous</a></li>
+                <li class="page-item"><a class="page-link" onclick="prePage();" id="previous">Previous</a></li>
                 <?php include "showpagesnav.php"; ?>
-                <li class="page-item"><a class="page-link">Next</a></li>
+                <li class="page-item"><a class="page-link" onclick="nextPage();">Next</a></li>
                 <div style="margin-left: 20px;padding-top: 5px;color: #333333;font-weight: bolder"><input type="number" style="width: 60px;" min="1" id="jumpinput"> /<?php
                     if(empty($_SESSION["sql"])){
                         $x = mysqli_query($_mysqli,"select artworkID FROM artworks WHERE orderID IS NULL");
