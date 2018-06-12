@@ -18,8 +18,11 @@ $result = $_mysqli ->query($sql);
 $row = $result ->fetch_assoc();
 $rownum = mysqli_num_rows($row);
 
-$result2 = mysqli_query($_mysqli,"SELECT orderID FROM artworks WHERE artworkID = '{$artworkID}'");
+
+
+$result2 = mysqli_query($_mysqli,"SELECT orderID,price FROM artworks WHERE artworkID = '{$artworkID}'");
 $row2 = $result2 ->fetch_assoc();
+$price = $row2["price"];
 if(empty($_SESSION["userID"])){
     echo 4;
 }else{
@@ -29,7 +32,9 @@ if(empty($_SESSION["userID"])){
         if($row){
             echo 2;
         }else{
-            mysqli_query($_mysqli,"insert into carts(userID,artworkID) VALUES ({$_SESSION["userID"]},{$artworkID})");
+            if( mysqli_query($_mysqli,"ALTER TABLE carts ADD price INT ")){}
+
+            mysqli_query($_mysqli,"insert into carts(userID,artworkID,price) VALUES ({$_SESSION["userID"]},{$artworkID},{$price})");
             echo 1;
         }
     }

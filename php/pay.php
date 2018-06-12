@@ -9,27 +9,39 @@ session_start();
 $_mysqli = mysqli_connect('localhost','root','');
 mysqli_select_db($_mysqli,'artstore');
 $_mysqli -> query("SET NAMES utf8");
-$mytotal = $_GET["mytotal"];
+//$mytotal = $_GET["mytotal"];
 $servertotal = 0;
+$mytotal = 0;
 
 
+$ifGo = true;
 
 $result = mysqli_query($_mysqli,"select * FROM carts WHERE userID = '{$_SESSION['userID']}'");
 while ($row = $result ->fetch_assoc()){
+    $mytotal += intval($row["price"]);
     $result2 = mysqli_query($_mysqli,"select imageFileName,title,description,price FROM artworks WHERE artworkID ='{$row["artworkID"]}'");
 
     $veryGood = $result2 ->fetch_assoc();
     if(!$veryGood){
+        mysqli_query($_mysqli,"delete FROM carts WHERE artworkID ='{$row["artworkID"]}'");
         echo 0;//被删了
+        $ifGo = false;
+
     }else{
-        $servertotal += $veryGood["price"];
+        $servertotal += intval($veryGood["price"]);
+        $refreshPrice = intval($veryGood["price"]);
+        mysqli_query($_mysqli,"update carts set price = {$refreshPrice} WHERE artworkID ='{$row["artworkID"]}'");
     }
+
 
 }
 if($mytotal != $servertotal){
+
     echo 1;//价格变动
+    $ifGo = false;
+
 }
-$ifGo = true;
+
 $result3 = mysqli_query($_mysqli,"select * FROM carts WHERE userID = '{$_SESSION['userID']}'");
 while ($row3 = $result3 ->fetch_assoc()){
     $result4 = mysqli_query($_mysqli,"select orderID FROM artworks WHERE artworkID ='{$row3["artworkID"]}'");
@@ -45,6 +57,7 @@ $getBalance = mysqli_query($_mysqli,"select balance FROM users WHERE userID = '{
 $resultBalance = $getBalance ->fetch_assoc();
 if($servertotal > intval($resultBalance["balance"])){
     echo 3;//余额不足
+    $ifGo = false;
 }else{
     if($ifGo){
         $newbalance = $resultBalance["balance"] - $servertotal;

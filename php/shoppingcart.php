@@ -61,17 +61,18 @@ if(empty($_SESSION["userID"]) ){
         while ($row = $result ->fetch_assoc()){
             $result2 = mysqli_query($_mysqli,"select imageFileName,title,description,price FROM artworks WHERE artworkID ='{$row["artworkID"]}'");
             $veryGood = $result2 ->fetch_assoc();
-            $totalmon += intval($veryGood["price"]);
+            $totalmon += intval($row["price"]);
+            if($veryGood){
             echo <<< SHOPPINGCARTDIV
             <tr style="vertical-align: top; text-align: center">
             <td width="10%">
-                <a href="specificdetailpage.php?artworkID="+{$row["artworkID"]}><img src="../resources/img/{$veryGood["imageFileName"]}" class="shoppinglistphoto" width="100%"></a>
+                <a href="specificdetailpage.php?artworkID={$row["artworkID"]}"><img src="../resources/img/{$veryGood["imageFileName"]}" class="shoppinglistphoto" width="100%"></a>
             </td>
             <td  width="20%">
                     <span class="shoppinglistlabel bold">{$veryGood["title"]}</span>
             </td>
             <td  width="10%">
-                <span class="shoppinglistlabel shopplistprice">{$veryGood["price"]}</span>
+                <span class="shoppinglistlabel shopplistprice">{$row["price"]}</span>
             </td>
             <td  width="50%">
                 <span class="diss">{$veryGood["description"]}</span>
@@ -81,6 +82,12 @@ if(empty($_SESSION["userID"]) ){
             </td>
         </tr>
 SHOPPINGCARTDIV;
+            }else{
+                echo <<<CANCLE
+                 <tr style="vertical-align: top; text-align: center;"><td width="10%">*ArtworkID: </td><td width="20%">{$row["artworkID"]}</td><td width="10%" class="shoppinglistlabel shopplistprice">{$row["price"]}</td><td colspan="2" width="60">取消售卖</td> </tr>
+CANCLE;
+
+            }
         }
 
         ?>
