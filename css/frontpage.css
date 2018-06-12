@@ -81,3 +81,11 @@ footer{
     color: #bcbec0;
     margin-bottom: 0;
 }
+#footprintdiv>a{
+    color: #ff5500;
+    font-weight: bolder;
+    margin-bottom: 5px;
+}
+#footprintdiv>a:hover{
+    color: #fb9e3a;
+}

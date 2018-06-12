@@ -7,6 +7,44 @@
  */
 session_start();
 error_reporting(0);
+
+//if(!(strpos($_COOKIE['trace'] ,"searchpage.php")===false)){
+//    $arr = explode(";",$_COOKIE['trace']);
+//    $deleteIndex = count($arr) - 1;
+//    foreach ($arr as $k => $item){
+//        if(!(strpos($item,"searchpage.php")===false)){
+//            $deleteIndex = $k;
+//        }
+//    }
+//    array_splice($arr,$deleteIndex);
+//    setcookie("trace",implode(";",$arr).';http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
+//}else{
+//    if(isset($_COOKIE['trace'])){
+//        setcookie("trace",$_COOKIE['trace'].';http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
+//    }else{
+//        setcookie("trace", 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
+//    }
+//}
+
+
+if(!(strpos($_SESSION['trace'] ,"searchpage.php")===false)){
+    $arr = explode(";",$_SESSION['trace']);
+    $deleteIndex = count($arr) - 1;
+    foreach ($arr as $k => $item){
+        if(!(strpos($item,"searchpage.php")===false)){
+            $deleteIndex = $k;
+        }
+    }
+    array_splice($arr,$deleteIndex);
+    $_SESSION['trace'] = implode(";",$arr).';http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'];
+}else{
+    if(isset($_SESSION['trace'])){
+        $_SESSION['trace'] = $_SESSION['trace'].';http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'];
+    }else{
+        $_SESSION['trace'] = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'];
+    }
+}
+
 $_mysqli = mysqli_connect('localhost','root','');
 mysqli_select_db($_mysqli,'artstore');
 $_mysqli -> query("SET NAMES utf8");
@@ -37,6 +75,12 @@ $_mysqli -> query("SET NAMES utf8");
         </ul>
         <div id="rightnavbar">
             <?php include 'logornot.php'; ?>
+        </div>
+    </div>
+    <div class="container">
+        <div class="folat-left" id="footprintdiv">
+            <!--显示足迹-->
+            <?php include "footprint.php";?>
         </div>
     </div>
 </nav>

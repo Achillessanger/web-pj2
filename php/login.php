@@ -18,6 +18,7 @@ echo <<<LOGINDIV
     <table>
         <tr><p style="text-align: center"><input type="text" placeholder="昵称" class="gray" id="login-username-input" name="userName"></p></tr>
         <tr><p style="text-align: center"><input type="password" placeholder="密码" class="gray" id="login-password-input" name="password"></p></tr>
+        <tr><p><input type="text" placeholder="验证码" class="gray" id="login-ic-input" autocomplete="off"><input type = "button" id="code" onclick="createCode()" value="点击获取"></tr>
         <tr><p class="remainder" id="r0"></p><p class="remainder hide" id="r1">*密码错误/用户不存在</p><p class="remainder hide" id="r3">*用户为空</p><p class="remainder hide" id="r4">*密码为空</p><p class="remainder hide" id="r5">*验证码错误</p></tr>
         <tr><input type="reset" style="display: none" id="loginreset"> </tr>
     </table></form>

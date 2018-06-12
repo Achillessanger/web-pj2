@@ -56,12 +56,14 @@ function loginAffirm() {
     document.getElementById('r1').classList.add('hide');//用户名密码错误，后端返回
     document.getElementById('r3').classList.add('hide');//用户为空，前端判断
     document.getElementById('r4').classList.add('hide');//密码为空，前端判断
-
+    document.getElementById('r5').classList.add('hide');//验证码错误
 
     if(document.getElementById('login-username-input').value == ""){
         document.getElementById('r3').classList.remove('hide');
     }else if(document.getElementById('login-password-input').value == ""){
         document.getElementById('r4').classList.remove('hide');
+    }else if(document.getElementById('login-ic-input').value != code0 || document.getElementById('login-ic-input').value == ""){
+        document.getElementById('r5').classList.remove('hide');
     }else {
         document.getElementById('loginform').submit();
         loginHide();
@@ -309,6 +311,27 @@ function logOut() {
     xmlhttp3.send();
 }
 
+
+var code;
+function createCode(){
+    //首先默认code为空字符串
+    code = '';
+    //设置长度，这里看需求，我这里设置了4
+    var codeLength = 4;
+    var codeV = document.getElementById('code');
+    //设置随机字符
+    var random = new Array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R', 'S','T','U','V','W','X','Y','Z');
+    //循环codeLength 我设置的4就是循环4次
+    for(var i = 0; i < codeLength; i++){
+        //设置随机数范围,这设置为0 ~ 36
+        var index = Math.floor(Math.random()*36);
+        //字符串拼接 将每次随机的字符 进行拼接
+        code += random[index];
+    }
+    //将拼接好的字符串赋值给展示的Value
+    codeV.value = code;
+    code0 = code;
+}
 
 
 

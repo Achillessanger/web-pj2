@@ -82,7 +82,7 @@
     margin: auto;
     background:white;
     width: 400px;
-    height: 250px;
+    height: 300px;
     color: #898989;
     font-size: 11px;
 }
@@ -111,7 +111,8 @@ nav ul li img{
 }
 #login-ic-input{
     width: 65px;
-    margin-left: 134px;
+    margin-left: 122px;
+    margin-right: 20px;
 }
 #code{
 

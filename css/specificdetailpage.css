@@ -122,3 +122,11 @@ body{
 .whitebutton:hover{
     border: black solid thin;
 }
+#footprintdiv>a{
+    color: #ff5500;
+    font-weight: bolder;
+    margin-bottom: 5px;
+}
+#footprintdiv>a:hover{
+    color: #fb9e3a;
+}

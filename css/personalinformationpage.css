@@ -201,3 +201,11 @@ body{
 #link:hover{
     color: #a19e9d;
 }
+#footprintdiv>a{
+    color: #ff5500;
+    font-weight: bolder;
+    margin-bottom: 5px;
+}
+#footprintdiv>a:hover{
+    color: #fb9e3a;
+}

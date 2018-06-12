@@ -6,6 +6,36 @@
  * Time: 17:27
  */
 session_start();
+
+//if(!(strpos($_COOKIE['trace'] ,"shoppingcart.php")===false)){
+//    $arr = explode(";",$_COOKIE['trace']);
+//    $deleteIndex = count($arr) - 1;
+//    foreach ($arr as $k => $item){
+//        if(!(strpos($item,"shoppingcart.php")===false)){
+//            $deleteIndex = $k;
+//        }
+//    }
+//    array_splice($arr,$deleteIndex);
+//    setcookie("trace",implode(";",$arr).';http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
+//}else{
+//    setcookie("trace",$_COOKIE['trace'].';http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
+//}
+
+
+if(!(strpos($_SESSION['trace'] ,"shoppingcart.php")===false)){
+    $arr = explode(";",$_SESSION['trace']);
+    $deleteIndex = count($arr) - 1;
+    foreach ($arr as $k => $item){
+        if(!(strpos($item,"shoppingcart.php")===false)){
+            $deleteIndex = $k;
+        }
+    }
+    array_splice($arr,$deleteIndex);
+    $_SESSION['trace'] = implode(";",$arr).';http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'];
+}else{
+    $_SESSION['trace'] = $_SESSION['trace'].';http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'];
+}
+
 $_mysqli = mysqli_connect('localhost','root','');
 mysqli_select_db($_mysqli,'artstore');
 $_mysqli -> query("SET NAMES utf8");
@@ -37,6 +67,12 @@ if(empty($_SESSION["userID"]) ){
         </ul>
         <div id="rightnavbar">
             <?php include 'logornot.php'; ?>
+        </div>
+    </div>
+    <div class="container">
+        <div class="folat-left" id="footprintdiv">
+            <!--显示足迹-->
+            <?php include "footprint.php";?>
         </div>
     </div>
 </nav>
