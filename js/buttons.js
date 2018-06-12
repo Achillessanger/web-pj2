@@ -153,6 +153,7 @@ function payFailed_deleted() {
 }
 function hidepayFailed0() {
     document.getElementById('goodDeleted').classList.add('hide');
+    document.location.reload();
 }
 
 function payFailed_priceChanged() {
@@ -161,6 +162,7 @@ function payFailed_priceChanged() {
 }
 function hidepayFailed1() {
     document.getElementById('priceChanged').classList.add('hide');
+    document.location.reload();
 }
 
 function payFailed_bought() {
@@ -169,6 +171,7 @@ function payFailed_bought() {
 }
 function hidepayFailed2() {
     document.getElementById('goodSold').classList.add('hide');
+    document.location.reload();
 }
 
 function payFailed_noEnoughMoney() {
@@ -177,6 +180,7 @@ function payFailed_noEnoughMoney() {
 }
 function hidepayFailed3() {
     document.getElementById('nomoney').classList.add('hide');
+    document.location.reload();
 }
 
 function paySuccessfully() {

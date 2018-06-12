@@ -110,6 +110,9 @@ $_mysqli -> query("SET NAMES utf8");
                         $worksnum = mysqli_num_rows($x);
                         if($worksnum % 16 == 0){
                             $pagesnum = $worksnum/16;
+                            if($pagesnum == 0){
+                                $pagesnum =1;
+                            }
                         }else{
                             $pagesnum = intval($worksnum/16)+1;
                         }
@@ -119,13 +122,16 @@ $_mysqli -> query("SET NAMES utf8");
                         $worksnum = mysqli_num_rows($x);
                         if($worksnum % 16 == 0){
                             $pagesnum = $worksnum/16;
+                            if($pagesnum == 0){
+                                $pagesnum =1;
+                            }
                         }else{
                             $pagesnum = intval($worksnum/16)+1;
                         }
                         echo $pagesnum;
                     }
                     ?> <a id="jump" onclick="changePageByNav2()">跳转</a></div>
-
+<?php // echo "<script>alert(111);setCurrentPage();</script>";?>
             </ul>
 
     </div>

@@ -9,7 +9,7 @@ session_start();
 $_mysqli = mysqli_connect('localhost','root','');
 mysqli_select_db($_mysqli,'artstore');
 $_mysqli -> query("SET NAMES utf8");
-
+error_reporting(0);
 //$sql = $_GET["sql"];
 $sql = $_SESSION["sql"];
 

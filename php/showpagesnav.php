@@ -33,6 +33,9 @@ if(!$keywords|| $keywords==""){
     $worksnum = mysqli_num_rows($result);
     if($worksnum % 16 == 0){
         $pagesnum = $worksnum/16;
+        if($pagesnum == 0){
+            $pagesnum =1;
+        }
     }else{
         $pagesnum = intval($worksnum/16)+1;
     }
@@ -52,6 +55,9 @@ if(!$keywords|| $keywords==""){
     $worksnum = mysqli_num_rows($result);
     if($worksnum % 16 == 0){
         $pagesnum = $worksnum/16;
+        if($pagesnum == 0){
+            $pagesnum =1;
+        }
     }else{
         $pagesnum = intval($worksnum/16)+1;
     }

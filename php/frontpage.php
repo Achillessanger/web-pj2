@@ -81,12 +81,13 @@ if(isset($_GET['a'])){
             ';
 
             while ($row = $result -> fetch_assoc()){
+                $discut = mb_strimwidth($row["description"], 0, 400, '...');
                 echo  '
                 <div class="carousel-item">
                                 <a href="specificdetailpage.php?artworkID='.$row['artworkID'].'"><img src="../resources/img/'.$row['imageFileName'].'" class="card-img-top  gallery"></a>
                                  <div class="carousel-caption">
                 <h3>'.$row['title'].'</h3>
-                <p>'.$row['description'].'</p>
+                <p>'.$discut.'</p>
                 </div>
                 </div>
             ';

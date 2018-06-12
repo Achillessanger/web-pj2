@@ -29,14 +29,15 @@ while ($row = $result ->fetch_assoc()){
 if($mytotal != $servertotal){
     echo 1;//价格变动
 }
-
+$ifGo = true;
 $result3 = mysqli_query($_mysqli,"select * FROM carts WHERE userID = '{$_SESSION['userID']}'");
-while ($row3 = $result ->fetch_assoc()){
+while ($row3 = $result3 ->fetch_assoc()){
     $result4 = mysqli_query($_mysqli,"select orderID FROM artworks WHERE artworkID ='{$row3["artworkID"]}'");
     $veryGood2 = $result4 ->fetch_assoc();
     if($veryGood2["orderID"] != NULL){
         echo 2;//有人已经买了
-        break;
+        mysqli_query($_mysqli,"delete FROM carts WHERE artworkID ='{$row3["artworkID"]}' AND userID = '{$_SESSION['userID']}'");
+        $ifGo = false;
     }
 }
 
@@ -45,21 +46,24 @@ $resultBalance = $getBalance ->fetch_assoc();
 if($servertotal > intval($resultBalance["balance"])){
     echo 3;//余额不足
 }else{
-    $newbalance = $resultBalance["balance"] - $servertotal;
-    mysqli_query($_mysqli,"update users set balance = {$newbalance} WHERE userID = '{$_SESSION['userID']}'");
+    if($ifGo){
+        $newbalance = $resultBalance["balance"] - $servertotal;
+        mysqli_query($_mysqli,"update users set balance = {$newbalance} WHERE userID = '{$_SESSION['userID']}'");
 
 
-    $orderForm = $_mysqli ->query("select artworkID FROM carts WHERE userID = '{$_SESSION['userID']}'");
-    while ($singleOrder = $orderForm ->fetch_assoc()){//$singleOrder为某个用户carts表单中每一个商品
-        mysqli_query($_mysqli,"insert into orders(ownerID,orders.sum) VALUE ({$_SESSION["userID"]},$servertotal)");
-        $result5=mysqli_query($_mysqli,"select orderID FROM orders WHERE ownerID='{$_SESSION["userID"]}' ORDER by orderID DESC limit 1");//用于获取orderID
+        $orderForm = $_mysqli ->query("select artworkID FROM carts WHERE userID = '{$_SESSION['userID']}'");
+        while ($singleOrder = $orderForm ->fetch_assoc()){//$singleOrder为某个用户carts表单中每一个商品ID
+            mysqli_query($_mysqli,"insert into orders(ownerID,orders.sum) VALUE ({$_SESSION["userID"]},$servertotal)");
+            $result5=mysqli_query($_mysqli,"select orderID FROM orders WHERE ownerID='{$_SESSION["userID"]}' ORDER by orderID DESC limit 1");//用于获取orderID
 //        $rownum = mysqli_num_rows($result5);
 //        mysqli_data_seek($result5,$rownum);
-        $rowTogetorderID = $result5 ->fetch_assoc();
-        mysqli_query($_mysqli,"update artworks set orderID ={$rowTogetorderID["orderID"]} WHERE artworkID='{$singleOrder["artworkID"]}'");
-        mysqli_query($_mysqli,"delete FROM carts WHERE artworkID='{$singleOrder["artworkID"]}' ");
+            $rowTogetorderID = $result5 ->fetch_assoc();
+            mysqli_query($_mysqli,"update artworks set orderID ={$rowTogetorderID["orderID"]} WHERE artworkID='{$singleOrder["artworkID"]}'");
+            mysqli_query($_mysqli,"delete FROM carts WHERE artworkID='{$singleOrder["artworkID"]}'AND userID = '{$_SESSION['userID']}'");
+        }
+        echo 4;//下单成功
     }
-    echo 4;//下单成功
+
 }
 
 ?>

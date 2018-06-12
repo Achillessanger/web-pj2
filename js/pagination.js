@@ -64,6 +64,18 @@ function nextPage() {
     }
 }
 
+function setCurrentPage() {
+    var all = document.getElementsByClassName("page-item");
+    var pageindex = 1;
+    for(var i in all){
+        if(all[i].classList.contains("active")){
+            pageindex = i;
+            break;
+        }
+    }
+    document.getElementById("jumpinput").setAttribute("placeholder",pageindex);
+}
+
 document.getElementById("searchbar-input").onkeydown = function (ev) {
     var e = event || window.event || arguments.callee.caller.arguments[0];
     var keywords = document.getElementById('searchbar-input').value;

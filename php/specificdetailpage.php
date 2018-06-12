@@ -140,6 +140,12 @@ BUTTONS;
 <div id="pleaselogin" class="pop-remind-div hide">
     <p>请先登录！</p>
 </div>
+<div id="loginsuccessfully" class="pop-remind-div hide">
+    <p>登陆成功！</p>
+</div>
+<div id="loginfailed" class="pop-remind-div hide">
+    <p>登陆失败！</p>
+</div>
 
 
 
