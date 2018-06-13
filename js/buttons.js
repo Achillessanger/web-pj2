@@ -132,6 +132,7 @@ function pay() {
     }
     xmlhttp.onreadystatechange = function (ev) {
         if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            // alert(xmlhttp.responseText)
             if(xmlhttp.responseText.charAt(0)==0){
                 payFailed_deleted();
             }

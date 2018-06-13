@@ -71,7 +71,15 @@ if($servertotal > intval($resultBalance["balance"])){
 //        $rownum = mysqli_num_rows($result5);
 //        mysqli_data_seek($result5,$rownum);
             $rowTogetorderID = $result5 ->fetch_assoc();
+            $result6 = mysqli_query($_mysqli,"select ownerID,price FROM artworks WHERE artworkID='{$singleOrder["artworkID"]}'");
+            $userToAddBalance = $result6 ->fetch_assoc();
+            $addMoney = intval($userToAddBalance["price"]);
+            $result7 = mysqli_query($_mysqli,"select balance FROM users WHERE userID = '{$userToAddBalance["ownerID"]}'");
+            $moneyIhave = $result7 ->fetch_assoc();
+            $previousMoney =intval( $moneyIhave["balance"]);
+            $newAddedBalance = $addMoney + $previousMoney;
             mysqli_query($_mysqli,"update artworks set orderID ={$rowTogetorderID["orderID"]} WHERE artworkID='{$singleOrder["artworkID"]}'");
+            mysqli_query($_mysqli,"update users set balance = {$newAddedBalance} WHERE userID = '{$userToAddBalance["ownerID"]}'");
             mysqli_query($_mysqli,"delete FROM carts WHERE artworkID='{$singleOrder["artworkID"]}'AND userID = '{$_SESSION['userID']}'");
         }
         echo 4;//下单成功
