@@ -248,8 +248,9 @@ function writeSession() {
     }
     xmlhttp.onreadystatechange = function (ev) {
         if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-                document.location.reload();
                 seeIfLoged();
+            document.location.reload();
+
         }
     }
     xmlhttp.open("POST","writesession.php",true)

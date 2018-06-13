@@ -209,3 +209,6 @@ body{
 #footprintdiv>a:hover{
     color: #fb9e3a;
 }
+.haserror{
+    border: 1px solid red;
+}

@@ -1,6 +1,6 @@
 // 充值界面btn的onclick（）
 function addMoney() {
-    document.getElementById('chargeform').submit();
+
     if (window.XMLHttpRequest)
     {
         xmlhttp=new XMLHttpRequest();// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
@@ -12,18 +12,23 @@ function addMoney() {
             document.getElementById('balance').innerText = xmlhttp.responseText;
         }
     }
-    if(parseInt(document.getElementById('chargeinput').value)==parseFloat(document.getElementById('chargeinput').value)&&document.getElementById('chargeinput').value>0){
+    if((parseInt(document.getElementById('chargeinput').value)==parseFloat(document.getElementById('chargeinput').value))&&document.getElementById('chargeinput').value>0&&document.getElementById('chargeinput').value<=100000){
+        document.getElementById('chargeform').submit();
         xmlhttp.open("GET","addmoney.php?add="+document.getElementById('chargeinput').value,true)
         xmlhttp.send();
-    }else if(document.getElementById('chargeinput').value<=0){
-        alert("请选择正整数充值");
-    } else {
-        alert("请按整数充值");
+        hideCharge();
+    }else {   //if(document.getElementById('chargeinput').value<=0||document.getElementById('chargeinput').value > 100000)
+        document.getElementById('chargeinput').classList.add("haserror")
     }
+    // else {
+    //     alert("请按整数充值");
+    // }
 
-    hideCharge();
+
 }
 function showCharge() {
+    document.getElementById('chargeinput').classList.remove("haserror")
+    document.getElementById('chargeinput').value = "";
     document.getElementById('charge-pop').classList.remove('hide');
 }
 

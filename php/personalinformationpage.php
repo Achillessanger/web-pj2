@@ -50,6 +50,7 @@ if(empty($_SESSION["userID"]) ){
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/personalinformationpage.css">
+<!--    <link rel="stylesheet" href="../css/popout.css">-->
 </head>
 <body>
 <nav class="navbar navbar-fixed-top">
@@ -225,11 +226,16 @@ MYSOLD;
     <img src="../images/icons/cancel.png"  onclick="hideCharge()">
     <form method="post" id="chargeform">
         <p>充值金额：</p>
-        <input type="number" placeholder="请输入充值金额" min="1" id="chargeinput" name="charge"><br>
+        <input type="number" placeholder="请输入充值金额" min="0" max="100000" id="chargeinput" name="charge"><br>
         <button type="submit" id="chargebtn" onclick="addMoney()">确认充值</button>
     </form>
 
 </div>
+
+<!--<div id="loginfirst" class="pop-remind-div hide">-->
+<!--    <p>请先登录</p>-->
+<!--</div>-->
+
 
 
 
