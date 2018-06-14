@@ -117,10 +117,13 @@ function c1() { //对昵称的检查
     xmlhttp.onreadystatechange = function (ev) {
         if (xmlhttp.readyState==4 && xmlhttp.status==200) {
             if(xmlhttp.responseText == 0){
-                document.getElementById('rm1').classList.add('hide');
-                document.getElementById('rm2').classList.add('hide');
-                document.getElementById('rm13').classList.remove('hide');
-                document.getElementById('rm3').classList.add('hide');
+                if(a){
+                    document.getElementById('rm1').classList.add('hide');
+                    document.getElementById('rm2').classList.add('hide');
+                    document.getElementById('rm13').classList.remove('hide');
+                    document.getElementById('rm3').classList.add('hide');
+                }
+
             }else {
                 if(a){
                     document.getElementById('rm1').classList.add('hide');
@@ -176,10 +179,12 @@ function c2() {//对密码的检查
 }
 function c3() {//对重复密码的检查
     stringin3 = document.getElementById('in3').value;
-    if(document.getElementById('in1').value==""&&document.getElementById('in2').value == ""){
-        document.getElementById('rm7').classList.add('hide');
-        canRegiste3 = false;
-    }else if(!(stringin3 == stringin2)){
+    // if(document.getElementById('in1').value==""&&document.getElementById('in2').value == ""){
+    //     document.getElementById('rm7').classList.add('hide');
+    //     canRegiste3 = false;
+    // }else
+        if(!(stringin3 == stringin2)|| stringin3 == ""){
+
         document.getElementById('rm7').classList.remove('hide');
         canRegiste3 = false;
     }else {

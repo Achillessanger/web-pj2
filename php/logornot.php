@@ -26,9 +26,6 @@ function showNavLef_tourist(){
                 <a href="searchpage.php?searchprin=1&displayprin=1&&keywords=" class="nav-link right-a">搜索</a>
             </li>
             <li class="nav-item ">
-                <a href="specificdetailpage.php?artworkID=351" class="nav-link right-a">详情</a>
-            </li>
-            <li class="nav-item ">
                 <a class="nav-link right-a" onclick="loginShow();">登陆</a>
             </li>
             <li class="nav-item">
@@ -47,9 +44,6 @@ function showNavLef_loged(){
             </li>
             <li class="nav-item ">
                 <a href="shoppingcart.php" class="nav-link right-a"><i class="fa fa-shopping-cart">购物车</i> </a>
-            </li>
-            <li class="nav-item ">
-                <a href="specificdetailpage.php?artworkID=351" class="nav-link right-a"><i class="fa fa-navicon">详情</i></a>
             </li>
             <li class="nav-item ">
                 <a class="nav-link right-a" onclick="logOut();"><i class="fa fa-mail-reply">登出</i></a>

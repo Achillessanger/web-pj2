@@ -138,7 +138,7 @@ $row = $result ->fetch_assoc();
                     <div class="card-block">
                         <table id="uploadnotsoldtable">
                         <?php
-                            $myUploadStillNotSoldForm = mysqli_query($_mysqli,"select artworkID,imageFileName,title,timeReleased FROM artworks WHERE ownerID ='{$_SESSION['userID']}' AND orderID IS NULL ");
+                            $myUploadStillNotSoldForm = mysqli_query($_mysqli,"select artworkID,imageFileName,title,timeReleased FROM artworks WHERE ownerID ='{$_SESSION['userID']}' AND orderID IS NULL ORDER BY timeReleased DESC ");
                             while ($myUploadsStillNotSold = $myUploadStillNotSoldForm ->fetch_assoc()){
                                 echo <<<MYUPLOADSNOTSOLD
                                 <tr style="border-bottom: 1px solid black;">
@@ -165,8 +165,8 @@ MYUPLOADSNOTSOLD;
                             <?php
                                 while ($myOrders = $myOrdersForm ->fetch_assoc()) {
                                     $orderInArtworks = mysqli_query($_mysqli, "select title,artworkID FROM artworks WHERE orderID='{$myOrders["orderID"]}'");
-                                    $myVeryOrder = $orderInArtworks->fetch_assoc();
-                                    echo <<<MYORDERS
+                                    while ($myVeryOrder = $orderInArtworks->fetch_assoc()){
+                                        echo <<<MYORDERS
                                     <tr>
                                 <td width="15%">订单编号：{$myOrders["orderID"]}</td>
                                 <td width="35%" ><a href="specificdetailpage.php?artworkID={$myVeryOrder["artworkID"]}" style="text-decoration: none;" id="ordername">商品名称：{$myVeryOrder["title"]}</a></td>
@@ -174,6 +174,7 @@ MYUPLOADSNOTSOLD;
                                 <td width="20%">订单总金额：$ {$myOrders["sum"]}</td>
                                 </tr>
 MYORDERS;
+                                    }
                                 }
                             ?>
                         </table>
@@ -188,9 +189,9 @@ MYORDERS;
                     <div class="card-block">
                         <table>
                             <?php
-                            $mySoldForm = mysqli_query($_mysqli,"select * FROM artworks WHERE ownerID = '{$_SESSION["userID"]}' AND orderID IS NOT NULL ");
+                            $mySoldForm = mysqli_query($_mysqli,"select * FROM artworks WHERE ownerID = '{$_SESSION["userID"]}' AND orderID IS NOT NULL ORDER BY timeReleased DESC ");//所有我卖出去的商品
                             while ($mySoldGoods = $mySoldForm ->fetch_assoc()){
-                                $mySoldOrderForm = mysqli_query($_mysqli,"select * FROM orders WHERE orderID= '{$mySoldGoods["orderID"]}'");
+                                $mySoldOrderForm = mysqli_query($_mysqli,"select * FROM orders WHERE orderID= '{$mySoldGoods["orderID"]}'");//1行
                                 $myPayerIDrow = $mySoldOrderForm ->fetch_assoc();
                                 $myPayerInforForm = mysqli_query($_mysqli,"select * FROM users WHERE userID = '{$myPayerIDrow["ownerID"]}'");
                                 $myPayerInforrow = $myPayerInforForm ->fetch_assoc();

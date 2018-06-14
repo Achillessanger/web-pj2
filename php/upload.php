@@ -95,7 +95,7 @@ if(isset($artworkno)){
                 <textarea class="form-control" id="exampleTextareaDes" rows="3" name="exampleTextareaDes" onblur="seeIfNoContentInTextarea(this)" placeholder="This item cannot be empty" ><?php
                     if(isset($artworkno)){
                         echo $veryArtwork["description"];
-                    } ?> </textarea>
+                    } ?></textarea>
             </div>
         </fieldset>
 

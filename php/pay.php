@@ -63,14 +63,13 @@ if($servertotal > intval($resultBalance["balance"])){
         $newbalance = $resultBalance["balance"] - $servertotal;
         mysqli_query($_mysqli,"update users set balance = {$newbalance} WHERE userID = '{$_SESSION['userID']}'");
 
-
         $orderForm = $_mysqli ->query("select artworkID FROM carts WHERE userID = '{$_SESSION['userID']}'");
+        mysqli_query($_mysqli,"insert into orders(ownerID,orders.sum) VALUE ({$_SESSION["userID"]},$servertotal)");
+        $result9 = mysqli_query($_mysqli,"select orderID FROM orders ORDER BY orderID DESC limit 1");
+        $getCurrentOrderID = $result9 ->fetch_assoc();
+        $currentOrderID = $getCurrentOrderID["orderID"];//新生成的订单编号,用于修改artworks里的orderID
         while ($singleOrder = $orderForm ->fetch_assoc()){//$singleOrder为某个用户carts表单中每一个商品ID
-            mysqli_query($_mysqli,"insert into orders(ownerID,orders.sum) VALUE ({$_SESSION["userID"]},$servertotal)");
-            $result5=mysqli_query($_mysqli,"select orderID FROM orders WHERE ownerID='{$_SESSION["userID"]}' ORDER by orderID DESC limit 1");//用于获取orderID
-//        $rownum = mysqli_num_rows($result5);
-//        mysqli_data_seek($result5,$rownum);
-            $rowTogetorderID = $result5 ->fetch_assoc();
+
             $result6 = mysqli_query($_mysqli,"select ownerID,price FROM artworks WHERE artworkID='{$singleOrder["artworkID"]}'");
             $userToAddBalance = $result6 ->fetch_assoc();
             $addMoney = intval($userToAddBalance["price"]);
@@ -78,8 +77,8 @@ if($servertotal > intval($resultBalance["balance"])){
             $moneyIhave = $result7 ->fetch_assoc();
             $previousMoney =intval( $moneyIhave["balance"]);
             $newAddedBalance = $addMoney + $previousMoney;
-            mysqli_query($_mysqli,"update artworks set orderID ={$rowTogetorderID["orderID"]} WHERE artworkID='{$singleOrder["artworkID"]}'");
-            mysqli_query($_mysqli,"update users set balance = {$newAddedBalance} WHERE userID = '{$userToAddBalance["ownerID"]}'");
+            mysqli_query($_mysqli,"update artworks set orderID ={$currentOrderID} WHERE artworkID='{$singleOrder["artworkID"]}'");
+            mysqli_query($_mysqli,"update users set balance = {$newAddedBalance} WHERE userID = '{$userToAddBalance["ownerID"]}'");//卖家获得钱
             mysqli_query($_mysqli,"delete FROM carts WHERE artworkID='{$singleOrder["artworkID"]}'AND userID = '{$_SESSION['userID']}'");
         }
         echo 4;//下单成功
