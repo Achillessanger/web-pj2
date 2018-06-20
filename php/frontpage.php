@@ -167,11 +167,12 @@ $_mysqli -> query("SET NAMES utf8");
         $newestPics = "select imageFileName,title,description,artworkID FROM artworks WHERE orderID IS NULL ORDER BY artworks.timeReleased DESC limit 3";
         $result = $_mysqli -> query($newestPics);
         while ($row = $result -> fetch_assoc()){
+            $discut = mb_strimwidth($row["description"], 0, 600, '...');
             echo '
              <div class="col-md-4">
             <a href="specificdetailpage.php?artworkID='.$row['artworkID'].'"><img src="../resources/img/'.$row['imageFileName'].'"  class="hottest-vbox" width="100%"></a>
                 <p class="title">'.$row['title'].'</p>
-                <p class="dis">'.$row['description'].'</p>
+                <p class="dis">'.$discut.'</p>
                 <button type="button" class="btn btn-secondary" onclick="window.location.href=\'specificdetailpage.php?artworkID='.$row['artworkID'].'\'">Learn More</button>
         </div>
             ';

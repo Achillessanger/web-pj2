@@ -130,3 +130,11 @@ body{
 #footprintdiv>a:hover{
     color: #fb9e3a;
 }
+#artistlink{
+    text-decoration: none;
+    cursor: pointer;
+    color: #898989;
+}
+#artistlink:hover{
+    color: #fb9e3a;
+}

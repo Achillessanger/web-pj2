@@ -18,6 +18,13 @@ if(isset($_POST["inputTitle"])) {
     $width = $_POST["inputWidth"];
     $price = $_POST["inputPrice"];
 
+    if($_FILES["file"]["name"]){//替换图片
+        if(unlink("../resources/img/{$artworkno}.jpg")){
+            $_FILES["file"]["name"] = $artworkno.".jpg";
+            move_uploaded_file($_FILES["file"]["tmp_name"], "../resources/img/" . $_FILES["file"]["name"]);
+        }
+    }
+
 
    $sql = "update artworks set artist = '{$artist}',title = '{$title}',description ='{$des}',yearOfWork = '{$year}',genre = '{$genre}',width = '{$length}',height='{$width}',price = '{$price}' WHERE artworkID = '{$_SESSION["uploadID"]}'";
  //$sql = "update artworks set title = '{$title}' WHERE artworkID = '{$_SESSION["uploadID"]}'";

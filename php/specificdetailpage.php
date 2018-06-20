@@ -99,7 +99,7 @@ mysqli_query($_mysqli,"update artworks set artworks.view = {$newviewNum} WHERE a
 
             echo <<<TITLESMALL
             <div class="paintertitle">{$artwork['title']}</div>
-            <div class="paintername"><a>Artist: {$artwork['artist']}</a></div>
+            <div class="paintername"><a href="searchpage.php?searchprin=3&displayprin=1&keywords={$artwork['artist']}" id="artistlink">Artist: {$artwork['artist']}</a></div>
 TITLESMALL;
             ?>
         </div>

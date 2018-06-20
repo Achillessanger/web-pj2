@@ -144,7 +144,7 @@ $_mysqli -> query("SET NAMES utf8");
 <div class="container pagescontainer">
     <div class="pagesnav">
 
-            <ul class="pagination" style="width: 80%" id="searchresultul">
+            <ul class="pagination" style="width: 70%" id="searchresultul">
                 <li class="page-item"><a class="page-link" onclick="prePage();" id="previous">Previous</a></li>
                 <?php include "showpagesnav.php"; ?>
                 <li class="page-item"><a class="page-link" onclick="nextPage();">Next</a></li>
